@@ -1,75 +1,5 @@
-5 warnings generated.
-[846/5768] Building CXX object core/libs/prx/libSceAgcDriver/CMakeFiles/libSceAgcDriver.dir/Execution/src/Driver/Lifecycle.cpp.o
-FAILED: [code=1] core/libs/prx/libSceAgcDriver/CMakeFiles/libSceAgcDriver.dir/Execution/src/Driver/Lifecycle.cpp.o 
-/usr/bin/c++ -DANYPS5_ENABLE_SPIRV_TOOLS=0 -DAPS5_ENABLE_TIMING_LOG=0 -DlibSceAgcDriver_EXPORTS -Icore/libs -Ibuild/core/libs/prx/libSceAgcDriver/generated -Icore/shader/recompiler/RdnaDecoder/include -I3rdparty/Vulkan-Headers/include -I3rdparty/SPIRV-Headers/include -Icore/shader/recompiler -Icore/shader/recompiler/ControlFlow/include -Icore/shader/recompiler/IntermediateRepresentation/include -Icore/shader/recompiler/Translation/include -Icore/shader/recompiler/Optimization/include -Icore/shader/recompiler/SpirvBackend/include -I3rdparty/glslang -Icore/Decoder/Png/include -Ibuild/3rdparty/SDL2/include -Ibuild/3rdparty/SDL2/include/SDL2 -Ibuild/3rdparty/SDL2/include-config-release/SDL2 -I3rdparty/zstd/build/cmake/../../lib -isystem 3rdparty/libjpeg-turbo/src -isystem build/libjpeg-turbo/include -O3 -DNDEBUG -std=c++20 -arch x86_64 -fPIC -fexperimental-library -MD -MT core/libs/prx/libSceAgcDriver/CMakeFiles/libSceAgcDriver.dir/Execution/src/Driver/Lifecycle.cpp.o -MF core/libs/prx/libSceAgcDriver/CMakeFiles/libSceAgcDriver.dir/Execution/src/Driver/Lifecycle.cpp.o.d -o core/libs/prx/libSceAgcDriver/CMakeFiles/libSceAgcDriver.dir/Execution/src/Driver/Lifecycle.cpp.o -c core/libs/prx/libSceAgcDriver/Execution/src/Driver/Lifecycle.cpp
-In file included from core/libs/prx/libSceAgcDriver/Execution/src/Driver/Lifecycle.cpp:1:
-In file included from core/libs/prx/libSceAgcDriver/Execution/include/AsyncLog.hpp:3:
-core/libs/prx/libc/include/Shutdown.hpp:10:28: warning: 'LibcShutdownToken_nid_postfix' has C-linkage specified, but returns user-defined type 'std::stop_token' which is incompatible with C [-Wreturn-type-c-linkage]
-   10 | extern "C" std::stop_token LibcShutdownToken_nid_postfix();
-      |                            ^
---
-   73 | std::shared_ptr<const Range> GuestAllocationsLookup_nid_postfix(std::uintptr_t address, bool next);
-      |                              ^
-core/libs/prx/libSceAgcDriver/Execution/src/Driver/Lifecycle.cpp:77:138: error: use of undeclared identifier 'MAP_FIXED_NOREPLACE'
-   77 |     mapped = mmap(reinterpret_cast<void*>(DriverMemoryAddress), DriverMemoryBytes, PROT_READ | PROT_WRITE, MAP_PRIVATE | MAP_ANONYMOUS | MAP_FIXED_NOREPLACE, -1, 0);
-      |                                                                                                                                          ^
-core/libs/prx/libSceAgcDriver/Execution/src/Driver/Lifecycle.cpp:110:17: error: use of undeclared identifier 'pthread_getattr_np'
-  110 |             if (pthread_getattr_np(pthread_self(), &attributes) != 0) return;
-      |                 ^
-5 warnings and 2 errors generated.
-[847/5768] Building CXX object core/libs/prx/libSceAgcDriver/CMakeFiles/libSceAgcDriver.dir/Execution/src/Driver/Memory/BufferCopy.cpp.o
-In file included from core/libs/prx/libSceAgcDriver/Execution/src/Driver/Memory/BufferCopy.cpp:1:
-In file included from core/libs/prx/libSceAgcDriver/Execution/include/Driver/Driver.hpp:6:
---
-[876/5768] Building CXX object core/libs/prx/libSceAgcDriver/CMakeFiles/libSceAgcDriver.dir/Execution/src/SubgroupClock.cpp.o
-[877/5768] Building CXX object core/libs/prx/libSceAgcDriver/CMakeFiles/libSceAgcDriver.dir/Execution/src/GuestMemory.cpp.o
-FAILED: [code=1] core/libs/prx/libSceAgcDriver/CMakeFiles/libSceAgcDriver.dir/Execution/src/GuestMemory.cpp.o 
-/usr/bin/c++ -DANYPS5_ENABLE_SPIRV_TOOLS=0 -DAPS5_ENABLE_TIMING_LOG=0 -DlibSceAgcDriver_EXPORTS -Icore/libs -Ibuild/core/libs/prx/libSceAgcDriver/generated -Icore/shader/recompiler/RdnaDecoder/include -I3rdparty/Vulkan-Headers/include -I3rdparty/SPIRV-Headers/include -Icore/shader/recompiler -Icore/shader/recompiler/ControlFlow/include -Icore/shader/recompiler/IntermediateRepresentation/include -Icore/shader/recompiler/Translation/include -Icore/shader/recompiler/Optimization/include -Icore/shader/recompiler/SpirvBackend/include -I3rdparty/glslang -Icore/Decoder/Png/include -Ibuild/3rdparty/SDL2/include -Ibuild/3rdparty/SDL2/include/SDL2 -Ibuild/3rdparty/SDL2/include-config-release/SDL2 -I3rdparty/zstd/build/cmake/../../lib -isystem 3rdparty/libjpeg-turbo/src -isystem build/libjpeg-turbo/include -O3 -DNDEBUG -std=c++20 -arch x86_64 -fPIC -fexperimental-library -MD -MT core/libs/prx/libSceAgcDriver/CMakeFiles/libSceAgcDriver.dir/Execution/src/GuestMemory.cpp.o -MF core/libs/prx/libSceAgcDriver/CMakeFiles/libSceAgcDriver.dir/Execution/src/GuestMemory.cpp.o.d -o core/libs/prx/libSceAgcDriver/CMakeFiles/libSceAgcDriver.dir/Execution/src/GuestMemory.cpp.o -c core/libs/prx/libSceAgcDriver/Execution/src/GuestMemory.cpp
-In file included from core/libs/prx/libSceAgcDriver/Execution/src/GuestMemory.cpp:8:
-core/libs/prx/libc/include/GuestAllocations.hpp:67:7: warning: 'GuestAllocationsFind_nid_postfix' has C-linkage specified, but returns user-defined type 'Range' which is incompatible with C [-Wreturn-type-c-linkage]
-   67 | Range GuestAllocationsFind_nid_postfix(void* mutation, const void* pointer);
-      |       ^
-core/libs/prx/libc/include/GuestAllocations.hpp:71:7: warning: 'GuestAllocationsAcquire_nid_postfix' has C-linkage specified, but returns user-defined type 'Lease' which is incompatible with C [-Wreturn-type-c-linkage]
---
-   73 | std::shared_ptr<const Range> GuestAllocationsLookup_nid_postfix(std::uintptr_t address, bool next);
-      |                              ^
-core/libs/prx/libSceAgcDriver/Execution/src/GuestMemory.cpp:750:17: error: use of undeclared identifier 'pthread_getattr_np'; did you mean 'pthread_getugid_np'?
-  750 |             if (pthread_getattr_np(pthread_self(), &attributes) != 0) return;
-      |                 ^~~~~~~~~~~~~~~~~~
-      |                 pthread_getugid_np
-/Applications/Xcode_16.4.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX.sdk/usr/include/unistd.h:702:6: note: 'pthread_getugid_np' declared here
-  702 | int      pthread_getugid_np(uid_t *, gid_t *);
-      |          ^
-core/libs/prx/libSceAgcDriver/Execution/src/GuestMemory.cpp:750:36: error: cannot initialize a parameter of type 'uid_t *' (aka 'unsigned int *') with an rvalue of type 'pthread_t _Nonnull' (aka '_opaque_pthread_t *')
-  750 |             if (pthread_getattr_np(pthread_self(), &attributes) != 0) return;
-      |                                    ^~~~~~~~~~~~~~
-/Applications/Xcode_16.4.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX.sdk/usr/include/unistd.h:702:32: note: passing argument to parameter here
-  702 | int      pthread_getugid_np(uid_t *, gid_t *);
-      |                                    ^
-4 warnings and 2 errors generated.
---
-[885/5768] Building CXX object core/libs/prx/libSceAgcDriver/CMakeFiles/libSceAgcDriver.dir/Execution/src/AspectFit.cpp.o
-[886/5768] Building CXX object core/libs/prx/libSceAgcDriver/CMakeFiles/libSceAgcDriver.dir/Execution/src/FrameRecorder.cpp.o
-FAILED: [code=1] core/libs/prx/libSceAgcDriver/CMakeFiles/libSceAgcDriver.dir/Execution/src/FrameRecorder.cpp.o 
-/usr/bin/c++ -DANYPS5_ENABLE_SPIRV_TOOLS=0 -DAPS5_ENABLE_TIMING_LOG=0 -DlibSceAgcDriver_EXPORTS -Icore/libs -Ibuild/core/libs/prx/libSceAgcDriver/generated -Icore/shader/recompiler/RdnaDecoder/include -I3rdparty/Vulkan-Headers/include -I3rdparty/SPIRV-Headers/include -Icore/shader/recompiler -Icore/shader/recompiler/ControlFlow/include -Icore/shader/recompiler/IntermediateRepresentation/include -Icore/shader/recompiler/Translation/include -Icore/shader/recompiler/Optimization/include -Icore/shader/recompiler/SpirvBackend/include -I3rdparty/glslang -Icore/Decoder/Png/include -Ibuild/3rdparty/SDL2/include -Ibuild/3rdparty/SDL2/include/SDL2 -Ibuild/3rdparty/SDL2/include-config-release/SDL2 -I3rdparty/zstd/build/cmake/../../lib -isystem 3rdparty/libjpeg-turbo/src -isystem build/libjpeg-turbo/include -O3 -DNDEBUG -std=c++20 -arch x86_64 -fPIC -fexperimental-library -MD -MT core/libs/prx/libSceAgcDriver/CMakeFiles/libSceAgcDriver.dir/Execution/src/FrameRecorder.cpp.o -MF core/libs/prx/libSceAgcDriver/CMakeFiles/libSceAgcDriver.dir/Execution/src/FrameRecorder.cpp.o.d -o core/libs/prx/libSceAgcDriver/CMakeFiles/libSceAgcDriver.dir/Execution/src/FrameRecorder.cpp.o -c core/libs/prx/libSceAgcDriver/Execution/src/FrameRecorder.cpp
-In file included from core/libs/prx/libSceAgcDriver/Execution/src/FrameRecorder.cpp:3:
-In file included from core/libs/prx/libSceAgcDriver/Execution/include/Driver/Driver.hpp:6:
-In file included from core/libs/prx/libSceAgcDriver/Execution/include/Driver/DeviceAccess.hpp:4:
-In file included from core/libs/prx/libSceAgcDriver/Execution/include/VulkanDevice.hpp:9:
-In file included from core/libs/prx/libSceAgcDriver/Execution/include/Recipe.hpp:6:
---
-   50 | extern "C" std::vector<std::filesystem::path> WrittenPaths_nid_no_patch();
-      |                                               ^
-core/libs/prx/libSceAgcDriver/Execution/src/FrameRecorder.cpp:62:22: error: use of undeclared identifier 'environ'
-   62 |     char** entries = environ;
-      |                      ^
-11 warnings and 1 error generated.
-[887/5768] Building CXX object core/libs/prx/libSceAgcDriver/CMakeFiles/libSceAgcDriver.dir/Execution/src/PresentationScaler.cpp.o
-[888/5768] Building CXX object core/libs/prx/libSceAgcDriver/CMakeFiles/libSceAgcDriver.dir/Execution/src/PresentationPass.cpp.o
-[889/5768] Building CXX object core/libs/prx/libSceAgcDriver/CMakeFiles/libSceAgcDriver.dir/Execution/src/FloatFlushProbe.cpp.o
---
 4 warnings generated.
-[909/5768] Building CXX object core/libs/prx/libSceAgcDriver/CMakeFiles/libSceAgcDriver.dir/Graphics/src/GuestBufferMemory.cpp.o
+[897/5766] Building CXX object core/libs/prx/libSceAgcDriver/CMakeFiles/libSceAgcDriver.dir/Graphics/src/GuestBufferMemory.cpp.o
 FAILED: [code=1] core/libs/prx/libSceAgcDriver/CMakeFiles/libSceAgcDriver.dir/Graphics/src/GuestBufferMemory.cpp.o 
 /usr/bin/c++ -DANYPS5_ENABLE_SPIRV_TOOLS=0 -DAPS5_ENABLE_TIMING_LOG=0 -DlibSceAgcDriver_EXPORTS -Icore/libs -Ibuild/core/libs/prx/libSceAgcDriver/generated -Icore/shader/recompiler/RdnaDecoder/include -I3rdparty/Vulkan-Headers/include -I3rdparty/SPIRV-Headers/include -Icore/shader/recompiler -Icore/shader/recompiler/ControlFlow/include -Icore/shader/recompiler/IntermediateRepresentation/include -Icore/shader/recompiler/Translation/include -Icore/shader/recompiler/Optimization/include -Icore/shader/recompiler/SpirvBackend/include -I3rdparty/glslang -Icore/Decoder/Png/include -Ibuild/3rdparty/SDL2/include -Ibuild/3rdparty/SDL2/include/SDL2 -Ibuild/3rdparty/SDL2/include-config-release/SDL2 -I3rdparty/zstd/build/cmake/../../lib -isystem 3rdparty/libjpeg-turbo/src -isystem build/libjpeg-turbo/include -O3 -DNDEBUG -std=c++20 -arch x86_64 -fPIC -fexperimental-library -MD -MT core/libs/prx/libSceAgcDriver/CMakeFiles/libSceAgcDriver.dir/Graphics/src/GuestBufferMemory.cpp.o -MF core/libs/prx/libSceAgcDriver/CMakeFiles/libSceAgcDriver.dir/Graphics/src/GuestBufferMemory.cpp.o.d -o core/libs/prx/libSceAgcDriver/CMakeFiles/libSceAgcDriver.dir/Graphics/src/GuestBufferMemory.cpp.o -c core/libs/prx/libSceAgcDriver/Graphics/src/GuestBufferMemory.cpp
 In file included from core/libs/prx/libSceAgcDriver/Graphics/src/GuestBufferMemory.cpp:2:
@@ -80,46 +10,25 @@ core/libs/prx/libc/include/GuestAllocations.hpp:67:7: warning: 'GuestAllocations
 --
    73 | std::shared_ptr<const Range> GuestAllocationsLookup_nid_postfix(std::uintptr_t address, bool next);
       |                              ^
-core/libs/prx/libSceAgcDriver/Graphics/src/GuestBufferMemory.cpp:24:10: fatal error: 'linux/udmabuf.h' file not found
-   24 | #include <linux/udmabuf.h>
-      |          ^~~~~~~~~~~~~~~~~
-4 warnings and 1 error generated.
-[910/5768] Building CXX object core/libs/prx/libSceAgcDriver/CMakeFiles/libSceAgcDriver.dir/Graphics/src/BdaResources.cpp.o
-In file included from core/libs/prx/libSceAgcDriver/Graphics/src/BdaResources.cpp:1:
-In file included from core/libs/prx/libSceAgcDriver/Graphics/include/BdaResources.hpp:4:
+core/libs/prx/libSceAgcDriver/Graphics/src/GuestBufferMemory.cpp:3841:64: error: use of undeclared identifier 'MFD_CLOEXEC'
+ 3841 |     const int file = memfd_create("aps5-dma-buf-import-probe", MFD_CLOEXEC | MFD_ALLOW_SEALING);
+      |                                                                ^
+core/libs/prx/libSceAgcDriver/Graphics/src/GuestBufferMemory.cpp:3841:78: error: use of undeclared identifier 'MFD_ALLOW_SEALING'
+ 3841 |     const int file = memfd_create("aps5-dma-buf-import-probe", MFD_CLOEXEC | MFD_ALLOW_SEALING);
+      |                                                                              ^
+core/libs/prx/libSceAgcDriver/Graphics/src/GuestBufferMemory.cpp:3847:72: error: use of undeclared identifier 'F_ADD_SEALS'
+ 3847 |     if (ftruncate(file, static_cast<off_t>(bytes)) == 0 && fcntl(file, F_ADD_SEALS, F_SEAL_SHRINK) == 0) mapped = mmap(nullptr, bytes, PROT_READ | PROT_WRITE, MAP_SHARED, file, 0);
+      |                                                                        ^
+core/libs/prx/libSceAgcDriver/Graphics/src/GuestBufferMemory.cpp:3847:85: error: use of undeclared identifier 'F_SEAL_SHRINK'
+ 3847 |     if (ftruncate(file, static_cast<off_t>(bytes)) == 0 && fcntl(file, F_ADD_SEALS, F_SEAL_SHRINK) == 0) mapped = mmap(nullptr, bytes, PROT_READ | PROT_WRITE, MAP_SHARED, file, 0);
+      |                                                                                     ^
+4 warnings and 4 errors generated.
+[898/5766] Building CXX object core/libs/prx/libSceAgcDriver/CMakeFiles/libSceAgcDriver.dir/Graphics/src/ResidentMirror.cpp.o
+[899/5766] Building CXX object core/libs/prx/libSceAgcDriver/CMakeFiles/libSceAgcDriver.dir/Graphics/src/BufferAddress.cpp.o
+[900/5766] Building CXX object core/libs/prx/libSceAgcDriver/CMakeFiles/libSceAgcDriver.dir/Graphics/src/GuestTextureResource.cpp.o
 --
-10 warnings generated.
-[932/5768] Building CXX object core/libs/prx/libSceAgcDriver/CMakeFiles/libSceAgcDriver.dir/Graphics/src/Texture.cpp.o
-FAILED: [code=1] core/libs/prx/libSceAgcDriver/CMakeFiles/libSceAgcDriver.dir/Graphics/src/Texture.cpp.o 
-/usr/bin/c++ -DANYPS5_ENABLE_SPIRV_TOOLS=0 -DAPS5_ENABLE_TIMING_LOG=0 -DlibSceAgcDriver_EXPORTS -Icore/libs -Ibuild/core/libs/prx/libSceAgcDriver/generated -Icore/shader/recompiler/RdnaDecoder/include -I3rdparty/Vulkan-Headers/include -I3rdparty/SPIRV-Headers/include -Icore/shader/recompiler -Icore/shader/recompiler/ControlFlow/include -Icore/shader/recompiler/IntermediateRepresentation/include -Icore/shader/recompiler/Translation/include -Icore/shader/recompiler/Optimization/include -Icore/shader/recompiler/SpirvBackend/include -I3rdparty/glslang -Icore/Decoder/Png/include -Ibuild/3rdparty/SDL2/include -Ibuild/3rdparty/SDL2/include/SDL2 -Ibuild/3rdparty/SDL2/include-config-release/SDL2 -I3rdparty/zstd/build/cmake/../../lib -isystem 3rdparty/libjpeg-turbo/src -isystem build/libjpeg-turbo/include -O3 -DNDEBUG -std=c++20 -arch x86_64 -fPIC -fexperimental-library -MD -MT core/libs/prx/libSceAgcDriver/CMakeFiles/libSceAgcDriver.dir/Graphics/src/Texture.cpp.o -MF core/libs/prx/libSceAgcDriver/CMakeFiles/libSceAgcDriver.dir/Graphics/src/Texture.cpp.o.d -o core/libs/prx/libSceAgcDriver/CMakeFiles/libSceAgcDriver.dir/Graphics/src/Texture.cpp.o -c core/libs/prx/libSceAgcDriver/Graphics/src/Texture.cpp
-In file included from core/libs/prx/libSceAgcDriver/Graphics/src/Texture.cpp:1:
-In file included from core/libs/prx/libSceAgcDriver/Execution/include/AsyncLog.hpp:3:
-core/libs/prx/libc/include/Shutdown.hpp:10:28: warning: 'LibcShutdownToken_nid_postfix' has C-linkage specified, but returns user-defined type 'std::stop_token' which is incompatible with C [-Wreturn-type-c-linkage]
-   10 | extern "C" std::stop_token LibcShutdownToken_nid_postfix();
-      |                            ^
---
-In file included from /Applications/Xcode_16.4.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX.sdk/usr/include/c++/v1/__atomic/atomic_sync.h:12:
-In file included from /Applications/Xcode_16.4.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX.sdk/usr/include/c++/v1/__atomic/contention_t.h:12:
-/Applications/Xcode_16.4.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX.sdk/usr/include/c++/v1/__atomic/cxx_atomic_impl.h:274:37: error: _Atomic cannot be applied to type 'std::shared_ptr<const AgcDriver::Graphics::(anonymous namespace)::PendingList::Snapshot>' which is not trivially copyable
-  274 |   _LIBCPP_DISABLE_EXTENSION_WARNING _Atomic(_Tp) __a_value;
-      |                                     ^
-/Applications/Xcode_16.4.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX.sdk/usr/include/c++/v1/__atomic/cxx_atomic_impl.h:501:35: note: in instantiation of template class 'std::__cxx_atomic_base_impl<std::shared_ptr<const AgcDriver::Graphics::(anonymous namespace)::PendingList::Snapshot>>' requested here
-  501 | struct __cxx_atomic_impl : public _Base {
-      |                                   ^
-/Applications/Xcode_16.4.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX.sdk/usr/include/c++/v1/__atomic/atomic_base.h:33:34: note: in instantiation of template class 'std::__cxx_atomic_impl<std::shared_ptr<const AgcDriver::Graphics::(anonymous namespace)::PendingList::Snapshot>>' requested here
---
-In file included from /Applications/Xcode_16.4.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX.sdk/usr/include/c++/v1/__atomic/atomic_sync.h:12:
-In file included from /Applications/Xcode_16.4.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX.sdk/usr/include/c++/v1/__atomic/contention_t.h:12:
-/Applications/Xcode_16.4.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX.sdk/usr/include/c++/v1/__atomic/cxx_atomic_impl.h:502:17: error: static assertion failed due to requirement 'is_trivially_copyable<std::shared_ptr<const AgcDriver::Graphics::(anonymous namespace)::PendingList::Snapshot>>::value': std::atomic<T> requires that 'T' be a trivially copyable type
-  502 |   static_assert(is_trivially_copyable<_Tp>::value, "std::atomic<T> requires that 'T' be a trivially copyable type");
-      |                 ^~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
-/Applications/Xcode_16.4.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX.sdk/usr/include/c++/v1/__atomic/atomic_base.h:33:34: note: in instantiation of template class 'std::__cxx_atomic_impl<std::shared_ptr<const AgcDriver::Graphics::(anonymous namespace)::PendingList::Snapshot>>' requested here
-   33 |   mutable __cxx_atomic_impl<_Tp> __a_;
-      |                                  ^
-/Applications/Xcode_16.4.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX.sdk/usr/include/c++/v1/__atomic/atomic.h:38:24: note: in instantiation of template class 'std::__atomic_base<std::shared_ptr<const AgcDriver::Graphics::(anonymous namespace)::PendingList::Snapshot>>' requested here
---
-2 warnings generated.
-[1843/5768] Linking CXX shared library core/libs/libs/unpatched/libSceVideodec2.prx
+[1842/5766] Building CXX object core/libs/prx/libSceVideoOut/CMakeFiles/libSceVideoOut.dir/src/InputMapping.cpp.o
+[1843/5766] Linking CXX shared library core/libs/libs/unpatched/libSceVideodec2.prx
 ld: warning: no platform load command found in 'build/externals/ffmpeg-9ac4cfd195f1/lib/libavcodec.a[x86_64][221](aacpsdsp.o)', assuming: macOS
 ld: warning: no platform load command found in 'build/externals/ffmpeg-9ac4cfd195f1/lib/libavcodec.a[x86_64][223](blockdsp.o)', assuming: macOS
 ld: warning: no platform load command found in 'build/externals/ffmpeg-9ac4cfd195f1/lib/libavcodec.a[x86_64][225](bswapdsp.o)', assuming: macOS
@@ -184,15 +93,15 @@ ld: warning: no platform load command found in 'build/externals/ffmpeg-9ac4cfd19
 ld: warning: no platform load command found in 'build/externals/ffmpeg-9ac4cfd195f1/lib/libswresample.a[x86_64][11](audio_convert.o)', assuming: macOS
 ld: warning: no platform load command found in 'build/externals/ffmpeg-9ac4cfd195f1/lib/libswresample.a[x86_64][13](rematrix.o)', assuming: macOS
 ld: warning: no platform load command found in 'build/externals/ffmpeg-9ac4cfd195f1/lib/libswresample.a[x86_64][15](resample.o)', assuming: macOS
-[1844/5768] Building CXX object core/libs/prx/libSceVideoOut/CMakeFiles/libSceVideoOut.dir/__/libkernel/Time/TimedWait.cpp.o
-[1845/5768] Building CXX object core/libs/prx/libSceVideoRecordingP/CMakeFiles/libSceVideoRecordingP.dir/Export.cpp.o
+[1844/5766] Building CXX object core/libs/prx/libSceVideoOut/CMakeFiles/libSceVideoOut.dir/__/libkernel/Time/TimedWait.cpp.o
+[1845/5766] Linking C static library core/libs/prx/libSceVorbisDec/libvorbisfile.a
+[1846/5766] Building CXX object core/libs/prx/libSceVideoRecordingP/CMakeFiles/libSceVideoRecordingP.dir/Export.cpp.o
 In file included from core/libs/prx/libSceVideoRecordingP/Export.cpp:5:
 core/libs/prx/libc/include/General.hpp:34:34: warning: 'ResolvePath_nid_no_patch' has C-linkage specified, but returns user-defined type 'std::filesystem::path' which is incompatible with C [-Wreturn-type-c-linkage]
    34 | extern "C" std::filesystem::path ResolvePath_nid_no_patch(const char* path);
-      |                                  ^
 --
-[2082/5768] Linking CXX shared library core/libs/libs/unpatched/libmdbg_syscore.prx
-[2083/5768] Linking CXX shared library core/libs/libs/unpatched/libSceAjm.prx
+[2082/5766] Linking CXX shared library core/libs/libs/unpatched/libmdbg_syscore.prx
+[2083/5766] Linking CXX shared library core/libs/libs/unpatched/libSceAjm.prx
 ld: warning: no platform load command found in 'build/externals/ffmpeg-9ac4cfd195f1/lib/libavcodec.a[x86_64][221](aacpsdsp.o)', assuming: macOS
 ld: warning: no platform load command found in 'build/externals/ffmpeg-9ac4cfd195f1/lib/libavcodec.a[x86_64][223](blockdsp.o)', assuming: macOS
 ld: warning: no platform load command found in 'build/externals/ffmpeg-9ac4cfd195f1/lib/libavcodec.a[x86_64][225](bswapdsp.o)', assuming: macOS
@@ -249,10 +158,71 @@ ld: warning: no platform load command found in 'build/externals/ffmpeg-9ac4cfd19
 ld: warning: no platform load command found in 'build/externals/ffmpeg-9ac4cfd195f1/lib/libswresample.a[x86_64][11](audio_convert.o)', assuming: macOS
 ld: warning: no platform load command found in 'build/externals/ffmpeg-9ac4cfd195f1/lib/libswresample.a[x86_64][13](rematrix.o)', assuming: macOS
 ld: warning: no platform load command found in 'build/externals/ffmpeg-9ac4cfd195f1/lib/libswresample.a[x86_64][15](resample.o)', assuming: macOS
-[2084/5768] Listing libc exports
+[2084/5766] Linking CXX shared library core/libs/libs/unpatched/libSceAjm.native.prx
+ld: warning: no platform load command found in 'build/externals/ffmpeg-9ac4cfd195f1/lib/libavcodec.a[x86_64][221](aacpsdsp.o)', assuming: macOS
+ld: warning: no platform load command found in 'build/externals/ffmpeg-9ac4cfd195f1/lib/libavcodec.a[x86_64][223](blockdsp.o)', assuming: macOS
+ld: warning: no platform load command found in 'build/externals/ffmpeg-9ac4cfd195f1/lib/libavcodec.a[x86_64][225](bswapdsp.o)', assuming: macOS
+ld: warning: no platform load command found in 'build/externals/ffmpeg-9ac4cfd195f1/lib/libavcodec.a[x86_64][228](dct32.o)', assuming: macOS
+ld: warning: no platform load command found in 'build/externals/ffmpeg-9ac4cfd195f1/lib/libavcodec.a[x86_64][231](fpel.o)', assuming: macOS
+ld: warning: no platform load command found in 'build/externals/ffmpeg-9ac4cfd195f1/lib/libavcodec.a[x86_64][232](h263_loopfilter.o)', assuming: macOS
+ld: warning: no platform load command found in 'build/externals/ffmpeg-9ac4cfd195f1/lib/libavcodec.a[x86_64][234](h264_chromamc.o)', assuming: macOS
+ld: warning: no platform load command found in 'build/externals/ffmpeg-9ac4cfd195f1/lib/libavcodec.a[x86_64][235](h264_chromamc_10bit.o)', assuming: macOS
+ld: warning: no platform load command found in 'build/externals/ffmpeg-9ac4cfd195f1/lib/libavcodec.a[x86_64][236](h264_deblock.o)', assuming: macOS
+ld: warning: no platform load command found in 'build/externals/ffmpeg-9ac4cfd195f1/lib/libavcodec.a[x86_64][237](h264_deblock_10bit.o)', assuming: macOS
+ld: warning: no platform load command found in 'build/externals/ffmpeg-9ac4cfd195f1/lib/libavcodec.a[x86_64][238](h264_idct.o)', assuming: macOS
+ld: warning: no platform load command found in 'build/externals/ffmpeg-9ac4cfd195f1/lib/libavcodec.a[x86_64][239](h264_idct_10bit.o)', assuming: macOS
+ld: warning: no platform load command found in 'build/externals/ffmpeg-9ac4cfd195f1/lib/libavcodec.a[x86_64][240](h264_intrapred.o)', assuming: macOS
+ld: warning: no platform load command found in 'build/externals/ffmpeg-9ac4cfd195f1/lib/libavcodec.a[x86_64][241](h264_intrapred_10bit.o)', assuming: macOS
+ld: warning: no platform load command found in 'build/externals/ffmpeg-9ac4cfd195f1/lib/libavcodec.a[x86_64][244](h264_qpel_10bit.o)', assuming: macOS
+ld: warning: no platform load command found in 'build/externals/ffmpeg-9ac4cfd195f1/lib/libavcodec.a[x86_64][245](h264_qpel_8bit.o)', assuming: macOS
+ld: warning: no platform load command found in 'build/externals/ffmpeg-9ac4cfd195f1/lib/libavcodec.a[x86_64][246](h264_weight.o)', assuming: macOS
+ld: warning: no platform load command found in 'build/externals/ffmpeg-9ac4cfd195f1/lib/libavcodec.a[x86_64][247](h264_weight_10bit.o)', assuming: macOS
+ld: warning: no platform load command found in 'build/externals/ffmpeg-9ac4cfd195f1/lib/libavcodec.a[x86_64][250](h2656_inter.o)', assuming: macOS
+ld: warning: no platform load command found in 'build/externals/ffmpeg-9ac4cfd195f1/lib/libavcodec.a[x86_64][252](hevc_add_res.o)', assuming: macOS
+ld: warning: no platform load command found in 'build/externals/ffmpeg-9ac4cfd195f1/lib/libavcodec.a[x86_64][253](hevc_deblock.o)', assuming: macOS
+ld: warning: no platform load command found in 'build/externals/ffmpeg-9ac4cfd195f1/lib/libavcodec.a[x86_64][254](hevc_idct.o)', assuming: macOS
+ld: warning: no platform load command found in 'build/externals/ffmpeg-9ac4cfd195f1/lib/libavcodec.a[x86_64][255](hevc_mc.o)', assuming: macOS
+ld: warning: no platform load command found in 'build/externals/ffmpeg-9ac4cfd195f1/lib/libavcodec.a[x86_64][256](hevc_sao.o)', assuming: macOS
+ld: warning: no platform load command found in 'build/externals/ffmpeg-9ac4cfd195f1/lib/libavcodec.a[x86_64][257](hevc_sao_10bit.o)', assuming: macOS
+ld: warning: no platform load command found in 'build/externals/ffmpeg-9ac4cfd195f1/lib/libavcodec.a[x86_64][259](hpeldsp.o)', assuming: macOS
+ld: warning: no platform load command found in 'build/externals/ffmpeg-9ac4cfd195f1/lib/libavcodec.a[x86_64][261](idctdsp.o)', assuming: macOS
+ld: warning: no platform load command found in 'build/externals/ffmpeg-9ac4cfd195f1/lib/libavcodec.a[x86_64][263](imdct36.o)', assuming: macOS
+ld: warning: no platform load command found in 'build/externals/ffmpeg-9ac4cfd195f1/lib/libavcodec.a[x86_64][264](me_cmp.o)', assuming: macOS
+ld: warning: no platform load command found in 'build/externals/ffmpeg-9ac4cfd195f1/lib/libavcodec.a[x86_64][270](mpegvideoencdsp.o)', assuming: macOS
+ld: warning: no platform load command found in 'build/externals/ffmpeg-9ac4cfd195f1/lib/libavcodec.a[x86_64][272](opusdsp.o)', assuming: macOS
+ld: warning: no platform load command found in 'build/externals/ffmpeg-9ac4cfd195f1/lib/libavcodec.a[x86_64][274](pixblockdsp.o)', assuming: macOS
+ld: warning: no platform load command found in 'build/externals/ffmpeg-9ac4cfd195f1/lib/libavcodec.a[x86_64][276](qpel.o)', assuming: macOS
+ld: warning: no platform load command found in 'build/externals/ffmpeg-9ac4cfd195f1/lib/libavcodec.a[x86_64][277](qpeldsp.o)', assuming: macOS
+ld: warning: no platform load command found in 'build/externals/ffmpeg-9ac4cfd195f1/lib/libavcodec.a[x86_64][279](sbrdsp.o)', assuming: macOS
+ld: warning: no platform load command found in 'build/externals/ffmpeg-9ac4cfd195f1/lib/libavcodec.a[x86_64][281](simple_idct10.o)', assuming: macOS
+ld: warning: no platform load command found in 'build/externals/ffmpeg-9ac4cfd195f1/lib/libavcodec.a[x86_64][282](videodsp.o)', assuming: macOS
+ld: warning: no platform load command found in 'build/externals/ffmpeg-9ac4cfd195f1/lib/libavcodec.a[x86_64][284](vorbisdsp.o)', assuming: macOS
+ld: warning: no platform load command found in 'build/externals/ffmpeg-9ac4cfd195f1/lib/libavcodec.a[x86_64][286](vp8dsp.o)', assuming: macOS
+ld: warning: no platform load command found in 'build/externals/ffmpeg-9ac4cfd195f1/lib/libavcodec.a[x86_64][288](vp8dsp_loopfilter.o)', assuming: macOS
+ld: warning: no platform load command found in 'build/externals/ffmpeg-9ac4cfd195f1/lib/libavcodec.a[x86_64][293](vp9intrapred.o)', assuming: macOS
+ld: warning: no platform load command found in 'build/externals/ffmpeg-9ac4cfd195f1/lib/libavcodec.a[x86_64][294](vp9intrapred_16bpp.o)', assuming: macOS
+ld: warning: no platform load command found in 'build/externals/ffmpeg-9ac4cfd195f1/lib/libavcodec.a[x86_64][295](vp9itxfm.o)', assuming: macOS
+ld: warning: no platform load command found in 'build/externals/ffmpeg-9ac4cfd195f1/lib/libavcodec.a[x86_64][296](vp9itxfm_16bpp.o)', assuming: macOS
+ld: warning: no platform load command found in 'build/externals/ffmpeg-9ac4cfd195f1/lib/libavcodec.a[x86_64][297](vp9lpf.o)', assuming: macOS
+ld: warning: no platform load command found in 'build/externals/ffmpeg-9ac4cfd195f1/lib/libavcodec.a[x86_64][298](vp9lpf_16bpp.o)', assuming: macOS
+ld: warning: no platform load command found in 'build/externals/ffmpeg-9ac4cfd195f1/lib/libavcodec.a[x86_64][299](vp9mc.o)', assuming: macOS
+ld: warning: no platform load command found in 'build/externals/ffmpeg-9ac4cfd195f1/lib/libavcodec.a[x86_64][300](vp9mc_16bpp.o)', assuming: macOS
+ld: warning: no platform load command found in 'build/externals/ffmpeg-9ac4cfd195f1/lib/libavcodec.a[x86_64][301](xvididct.o)', assuming: macOS
+ld: warning: no platform load command found in 'build/externals/ffmpeg-9ac4cfd195f1/lib/libavutil.a[x86_64][89](cpuid.o)', assuming: macOS
+ld: warning: no platform load command found in 'build/externals/ffmpeg-9ac4cfd195f1/lib/libavutil.a[x86_64][92](float_dsp.o)', assuming: macOS
+ld: warning: no platform load command found in 'build/externals/ffmpeg-9ac4cfd195f1/lib/libavutil.a[x86_64][94](imgutils.o)', assuming: macOS
+ld: warning: no platform load command found in 'build/externals/ffmpeg-9ac4cfd195f1/lib/libavutil.a[x86_64][98](tx_float.o)', assuming: macOS
+ld: warning: no platform load command found in 'build/externals/ffmpeg-9ac4cfd195f1/lib/libswresample.a[x86_64][11](audio_convert.o)', assuming: macOS
+ld: warning: no platform load command found in 'build/externals/ffmpeg-9ac4cfd195f1/lib/libswresample.a[x86_64][13](rematrix.o)', assuming: macOS
+ld: warning: no platform load command found in 'build/externals/ffmpeg-9ac4cfd195f1/lib/libswresample.a[x86_64][15](resample.o)', assuming: macOS
+[2085/5766] Listing libc exports
 WROTE: build/core/libs/libc.exports
-[2085/5768] Linking CXX shared library core/libs/libs/unpatched/libSceAmpr.prx
-[2086/5768] Linking CXX shared library core/libs/libs/unpatched/libSceAjm.native.prx
+[2086/5766] Linking CXX shared library core/libs/libs/unpatched/libSceAmpr.prx
+[2087/5766] Linking CXX shared library core/libs/libs/unpatched/libSceAppContent.prx
+[2088/5766] Linking CXX shared library core/libs/libs/unpatched/libSceAt9Enc.prx
+[2089/5766] Linking CXX shared library core/libs/libs/unpatched/libSceAudio3d.prx
+[2090/5766] Linking CXX shared library core/libs/libs/unpatched/libSceAudioPropagation.prx
+[2091/5766] Linking CXX shared library core/libs/libs/unpatched/libSceAudiodec.prx
 ld: warning: no platform load command found in 'build/externals/ffmpeg-9ac4cfd195f1/lib/libavcodec.a[x86_64][221](aacpsdsp.o)', assuming: macOS
 ld: warning: no platform load command found in 'build/externals/ffmpeg-9ac4cfd195f1/lib/libavcodec.a[x86_64][223](blockdsp.o)', assuming: macOS
 ld: warning: no platform load command found in 'build/externals/ffmpeg-9ac4cfd195f1/lib/libavcodec.a[x86_64][225](bswapdsp.o)', assuming: macOS
@@ -309,16 +279,8 @@ ld: warning: no platform load command found in 'build/externals/ffmpeg-9ac4cfd19
 ld: warning: no platform load command found in 'build/externals/ffmpeg-9ac4cfd195f1/lib/libswresample.a[x86_64][11](audio_convert.o)', assuming: macOS
 ld: warning: no platform load command found in 'build/externals/ffmpeg-9ac4cfd195f1/lib/libswresample.a[x86_64][13](rematrix.o)', assuming: macOS
 ld: warning: no platform load command found in 'build/externals/ffmpeg-9ac4cfd195f1/lib/libswresample.a[x86_64][15](resample.o)', assuming: macOS
-[2087/5768] Linking CXX shared library core/libs/libs/unpatched/libSceAppContent.prx
-[2088/5768] Linking CXX shared library core/libs/libs/unpatched/libSceAt9Enc.prx
-[2089/5768] Linking CXX shared library core/libs/libs/unpatched/libSceAudio3d.prx
-[2090/5768] Linking CXX shared library core/libs/libs/unpatched/libSceAudioIn.prx
-FAILED: [code=1] core/libs/libs/unpatched/libSceAudioIn.prx 
-: && /usr/bin/c++ -O3 -DNDEBUG -arch x86_64 -dynamiclib -Wl,-headerpad_max_install_names -fexperimental-library -Xlinker --exclude-libs -Xlinker ALL -o core/libs/libs/unpatched/libSceAudioIn.prx -install_name @rpath/libSceAudioIn.prx core/libs/prx/libSceAudioIn/CMakeFiles/libSceAudioIn.dir/Export.cpp.o  -Wl,-rpath,@loader_path  3rdparty/SDL2/libSDL2.a  core/libs/libs/unpatched/libkernel.prx  core/libs/libs/unpatched/libc.prx  -lm  -framework CoreVideo  -framework Cocoa  -framework IOKit  -framework ForceFeedback  -framework Carbon  -framework CoreAudio  -framework AudioToolbox  -framework AVFoundation  -framework Foundation  -Xlinker -weak_framework -Xlinker GameController  -Xlinker -weak_framework -Xlinker Metal  -Xlinker -weak_framework -Xlinker QuartzCore  -Xlinker -weak_framework -Xlinker CoreHaptics && :
-ld: unknown options: --exclude-libs 
-clang++: error: linker command failed with exit code 1 (use -v to see invocation)
-[2091/5768] Linking CXX shared library core/libs/libs/unpatched/libSceAudioPropagation.prx
-[2092/5768] Linking CXX shared library core/libs/libs/unpatched/libSceAudiodec.native.prx
+[2092/5766] Linking CXX shared library core/libs/libs/unpatched/libSceAudioIn.prx
+[2093/5766] Linking CXX shared library core/libs/libs/unpatched/libSceAudiodec.native.prx
 ld: warning: no platform load command found in 'build/externals/ffmpeg-9ac4cfd195f1/lib/libavcodec.a[x86_64][221](aacpsdsp.o)', assuming: macOS
 ld: warning: no platform load command found in 'build/externals/ffmpeg-9ac4cfd195f1/lib/libavcodec.a[x86_64][223](blockdsp.o)', assuming: macOS
 ld: warning: no platform load command found in 'build/externals/ffmpeg-9ac4cfd195f1/lib/libavcodec.a[x86_64][225](bswapdsp.o)', assuming: macOS
@@ -375,64 +337,7 @@ ld: warning: no platform load command found in 'build/externals/ffmpeg-9ac4cfd19
 ld: warning: no platform load command found in 'build/externals/ffmpeg-9ac4cfd195f1/lib/libswresample.a[x86_64][11](audio_convert.o)', assuming: macOS
 ld: warning: no platform load command found in 'build/externals/ffmpeg-9ac4cfd195f1/lib/libswresample.a[x86_64][13](rematrix.o)', assuming: macOS
 ld: warning: no platform load command found in 'build/externals/ffmpeg-9ac4cfd195f1/lib/libswresample.a[x86_64][15](resample.o)', assuming: macOS
-[2093/5768] Linking CXX shared library core/libs/libs/unpatched/libSceAudiodec.prx
-ld: warning: no platform load command found in 'build/externals/ffmpeg-9ac4cfd195f1/lib/libavcodec.a[x86_64][221](aacpsdsp.o)', assuming: macOS
-ld: warning: no platform load command found in 'build/externals/ffmpeg-9ac4cfd195f1/lib/libavcodec.a[x86_64][223](blockdsp.o)', assuming: macOS
-ld: warning: no platform load command found in 'build/externals/ffmpeg-9ac4cfd195f1/lib/libavcodec.a[x86_64][225](bswapdsp.o)', assuming: macOS
-ld: warning: no platform load command found in 'build/externals/ffmpeg-9ac4cfd195f1/lib/libavcodec.a[x86_64][228](dct32.o)', assuming: macOS
-ld: warning: no platform load command found in 'build/externals/ffmpeg-9ac4cfd195f1/lib/libavcodec.a[x86_64][231](fpel.o)', assuming: macOS
-ld: warning: no platform load command found in 'build/externals/ffmpeg-9ac4cfd195f1/lib/libavcodec.a[x86_64][232](h263_loopfilter.o)', assuming: macOS
-ld: warning: no platform load command found in 'build/externals/ffmpeg-9ac4cfd195f1/lib/libavcodec.a[x86_64][234](h264_chromamc.o)', assuming: macOS
-ld: warning: no platform load command found in 'build/externals/ffmpeg-9ac4cfd195f1/lib/libavcodec.a[x86_64][235](h264_chromamc_10bit.o)', assuming: macOS
-ld: warning: no platform load command found in 'build/externals/ffmpeg-9ac4cfd195f1/lib/libavcodec.a[x86_64][236](h264_deblock.o)', assuming: macOS
-ld: warning: no platform load command found in 'build/externals/ffmpeg-9ac4cfd195f1/lib/libavcodec.a[x86_64][237](h264_deblock_10bit.o)', assuming: macOS
-ld: warning: no platform load command found in 'build/externals/ffmpeg-9ac4cfd195f1/lib/libavcodec.a[x86_64][238](h264_idct.o)', assuming: macOS
-ld: warning: no platform load command found in 'build/externals/ffmpeg-9ac4cfd195f1/lib/libavcodec.a[x86_64][239](h264_idct_10bit.o)', assuming: macOS
-ld: warning: no platform load command found in 'build/externals/ffmpeg-9ac4cfd195f1/lib/libavcodec.a[x86_64][240](h264_intrapred.o)', assuming: macOS
-ld: warning: no platform load command found in 'build/externals/ffmpeg-9ac4cfd195f1/lib/libavcodec.a[x86_64][241](h264_intrapred_10bit.o)', assuming: macOS
-ld: warning: no platform load command found in 'build/externals/ffmpeg-9ac4cfd195f1/lib/libavcodec.a[x86_64][244](h264_qpel_10bit.o)', assuming: macOS
-ld: warning: no platform load command found in 'build/externals/ffmpeg-9ac4cfd195f1/lib/libavcodec.a[x86_64][245](h264_qpel_8bit.o)', assuming: macOS
-ld: warning: no platform load command found in 'build/externals/ffmpeg-9ac4cfd195f1/lib/libavcodec.a[x86_64][246](h264_weight.o)', assuming: macOS
-ld: warning: no platform load command found in 'build/externals/ffmpeg-9ac4cfd195f1/lib/libavcodec.a[x86_64][247](h264_weight_10bit.o)', assuming: macOS
-ld: warning: no platform load command found in 'build/externals/ffmpeg-9ac4cfd195f1/lib/libavcodec.a[x86_64][250](h2656_inter.o)', assuming: macOS
-ld: warning: no platform load command found in 'build/externals/ffmpeg-9ac4cfd195f1/lib/libavcodec.a[x86_64][252](hevc_add_res.o)', assuming: macOS
-ld: warning: no platform load command found in 'build/externals/ffmpeg-9ac4cfd195f1/lib/libavcodec.a[x86_64][253](hevc_deblock.o)', assuming: macOS
-ld: warning: no platform load command found in 'build/externals/ffmpeg-9ac4cfd195f1/lib/libavcodec.a[x86_64][254](hevc_idct.o)', assuming: macOS
-ld: warning: no platform load command found in 'build/externals/ffmpeg-9ac4cfd195f1/lib/libavcodec.a[x86_64][255](hevc_mc.o)', assuming: macOS
-ld: warning: no platform load command found in 'build/externals/ffmpeg-9ac4cfd195f1/lib/libavcodec.a[x86_64][256](hevc_sao.o)', assuming: macOS
-ld: warning: no platform load command found in 'build/externals/ffmpeg-9ac4cfd195f1/lib/libavcodec.a[x86_64][257](hevc_sao_10bit.o)', assuming: macOS
-ld: warning: no platform load command found in 'build/externals/ffmpeg-9ac4cfd195f1/lib/libavcodec.a[x86_64][259](hpeldsp.o)', assuming: macOS
-ld: warning: no platform load command found in 'build/externals/ffmpeg-9ac4cfd195f1/lib/libavcodec.a[x86_64][261](idctdsp.o)', assuming: macOS
-ld: warning: no platform load command found in 'build/externals/ffmpeg-9ac4cfd195f1/lib/libavcodec.a[x86_64][263](imdct36.o)', assuming: macOS
-ld: warning: no platform load command found in 'build/externals/ffmpeg-9ac4cfd195f1/lib/libavcodec.a[x86_64][264](me_cmp.o)', assuming: macOS
-ld: warning: no platform load command found in 'build/externals/ffmpeg-9ac4cfd195f1/lib/libavcodec.a[x86_64][270](mpegvideoencdsp.o)', assuming: macOS
-ld: warning: no platform load command found in 'build/externals/ffmpeg-9ac4cfd195f1/lib/libavcodec.a[x86_64][272](opusdsp.o)', assuming: macOS
-ld: warning: no platform load command found in 'build/externals/ffmpeg-9ac4cfd195f1/lib/libavcodec.a[x86_64][274](pixblockdsp.o)', assuming: macOS
-ld: warning: no platform load command found in 'build/externals/ffmpeg-9ac4cfd195f1/lib/libavcodec.a[x86_64][276](qpel.o)', assuming: macOS
-ld: warning: no platform load command found in 'build/externals/ffmpeg-9ac4cfd195f1/lib/libavcodec.a[x86_64][277](qpeldsp.o)', assuming: macOS
-ld: warning: no platform load command found in 'build/externals/ffmpeg-9ac4cfd195f1/lib/libavcodec.a[x86_64][279](sbrdsp.o)', assuming: macOS
-ld: warning: no platform load command found in 'build/externals/ffmpeg-9ac4cfd195f1/lib/libavcodec.a[x86_64][281](simple_idct10.o)', assuming: macOS
-ld: warning: no platform load command found in 'build/externals/ffmpeg-9ac4cfd195f1/lib/libavcodec.a[x86_64][282](videodsp.o)', assuming: macOS
-ld: warning: no platform load command found in 'build/externals/ffmpeg-9ac4cfd195f1/lib/libavcodec.a[x86_64][284](vorbisdsp.o)', assuming: macOS
-ld: warning: no platform load command found in 'build/externals/ffmpeg-9ac4cfd195f1/lib/libavcodec.a[x86_64][286](vp8dsp.o)', assuming: macOS
-ld: warning: no platform load command found in 'build/externals/ffmpeg-9ac4cfd195f1/lib/libavcodec.a[x86_64][288](vp8dsp_loopfilter.o)', assuming: macOS
-ld: warning: no platform load command found in 'build/externals/ffmpeg-9ac4cfd195f1/lib/libavcodec.a[x86_64][293](vp9intrapred.o)', assuming: macOS
-ld: warning: no platform load command found in 'build/externals/ffmpeg-9ac4cfd195f1/lib/libavcodec.a[x86_64][294](vp9intrapred_16bpp.o)', assuming: macOS
-ld: warning: no platform load command found in 'build/externals/ffmpeg-9ac4cfd195f1/lib/libavcodec.a[x86_64][295](vp9itxfm.o)', assuming: macOS
-ld: warning: no platform load command found in 'build/externals/ffmpeg-9ac4cfd195f1/lib/libavcodec.a[x86_64][296](vp9itxfm_16bpp.o)', assuming: macOS
-ld: warning: no platform load command found in 'build/externals/ffmpeg-9ac4cfd195f1/lib/libavcodec.a[x86_64][297](vp9lpf.o)', assuming: macOS
-ld: warning: no platform load command found in 'build/externals/ffmpeg-9ac4cfd195f1/lib/libavcodec.a[x86_64][298](vp9lpf_16bpp.o)', assuming: macOS
-ld: warning: no platform load command found in 'build/externals/ffmpeg-9ac4cfd195f1/lib/libavcodec.a[x86_64][299](vp9mc.o)', assuming: macOS
-ld: warning: no platform load command found in 'build/externals/ffmpeg-9ac4cfd195f1/lib/libavcodec.a[x86_64][300](vp9mc_16bpp.o)', assuming: macOS
-ld: warning: no platform load command found in 'build/externals/ffmpeg-9ac4cfd195f1/lib/libavcodec.a[x86_64][301](xvididct.o)', assuming: macOS
-ld: warning: no platform load command found in 'build/externals/ffmpeg-9ac4cfd195f1/lib/libavutil.a[x86_64][89](cpuid.o)', assuming: macOS
-ld: warning: no platform load command found in 'build/externals/ffmpeg-9ac4cfd195f1/lib/libavutil.a[x86_64][92](float_dsp.o)', assuming: macOS
-ld: warning: no platform load command found in 'build/externals/ffmpeg-9ac4cfd195f1/lib/libavutil.a[x86_64][94](imgutils.o)', assuming: macOS
-ld: warning: no platform load command found in 'build/externals/ffmpeg-9ac4cfd195f1/lib/libavutil.a[x86_64][98](tx_float.o)', assuming: macOS
-ld: warning: no platform load command found in 'build/externals/ffmpeg-9ac4cfd195f1/lib/libswresample.a[x86_64][11](audio_convert.o)', assuming: macOS
-ld: warning: no platform load command found in 'build/externals/ffmpeg-9ac4cfd195f1/lib/libswresample.a[x86_64][13](rematrix.o)', assuming: macOS
-ld: warning: no platform load command found in 'build/externals/ffmpeg-9ac4cfd195f1/lib/libswresample.a[x86_64][15](resample.o)', assuming: macOS
-[2094/5768] Linking CXX shared library core/libs/libs/unpatched/libSceAvPlayer.native.prx
+[2094/5766] Linking CXX shared library core/libs/libs/unpatched/libSceAvPlayer.prx
 ld: warning: no platform load command found in 'build/externals/ffmpeg-9ac4cfd195f1/lib/libavcodec.a[x86_64][221](aacpsdsp.o)', assuming: macOS
 ld: warning: no platform load command found in 'build/externals/ffmpeg-9ac4cfd195f1/lib/libavcodec.a[x86_64][223](blockdsp.o)', assuming: macOS
 ld: warning: no platform load command found in 'build/externals/ffmpeg-9ac4cfd195f1/lib/libavcodec.a[x86_64][225](bswapdsp.o)', assuming: macOS
@@ -497,7 +402,7 @@ ld: warning: no platform load command found in 'build/externals/ffmpeg-9ac4cfd19
 ld: warning: no platform load command found in 'build/externals/ffmpeg-9ac4cfd195f1/lib/libswresample.a[x86_64][11](audio_convert.o)', assuming: macOS
 ld: warning: no platform load command found in 'build/externals/ffmpeg-9ac4cfd195f1/lib/libswresample.a[x86_64][13](rematrix.o)', assuming: macOS
 ld: warning: no platform load command found in 'build/externals/ffmpeg-9ac4cfd195f1/lib/libswresample.a[x86_64][15](resample.o)', assuming: macOS
-[2095/5768] Linking CXX shared library core/libs/libs/unpatched/libSceAvPlayer.prx
+[2095/5766] Linking CXX shared library core/libs/libs/unpatched/libSceAvPlayer.native.prx
 ld: warning: no platform load command found in 'build/externals/ffmpeg-9ac4cfd195f1/lib/libavcodec.a[x86_64][221](aacpsdsp.o)', assuming: macOS
 ld: warning: no platform load command found in 'build/externals/ffmpeg-9ac4cfd195f1/lib/libavcodec.a[x86_64][223](blockdsp.o)', assuming: macOS
 ld: warning: no platform load command found in 'build/externals/ffmpeg-9ac4cfd195f1/lib/libavcodec.a[x86_64][225](bswapdsp.o)', assuming: macOS
@@ -562,156 +467,19 @@ ld: warning: no platform load command found in 'build/externals/ffmpeg-9ac4cfd19
 ld: warning: no platform load command found in 'build/externals/ffmpeg-9ac4cfd195f1/lib/libswresample.a[x86_64][11](audio_convert.o)', assuming: macOS
 ld: warning: no platform load command found in 'build/externals/ffmpeg-9ac4cfd195f1/lib/libswresample.a[x86_64][13](rematrix.o)', assuming: macOS
 ld: warning: no platform load command found in 'build/externals/ffmpeg-9ac4cfd195f1/lib/libswresample.a[x86_64][15](resample.o)', assuming: macOS
-[2096/5768] Linking CXX shared library core/libs/libs/unpatched/libSceBluetoothHid.prx
-[2097/5768] Linking CXX shared library core/libs/libs/unpatched/libSceCamera.prx
-[2098/5768] Linking CXX shared library core/libs/libs/unpatched/libSceCesCs.prx
-[2099/5768] Linking CXX shared library core/libs/libs/unpatched/libSceCesCs-module.prx
-[2100/5768] Linking CXX shared library core/libs/libs/unpatched/libSceCommonDialog.prx
-[2101/5768] Linking CXX shared library core/libs/libs/unpatched/libSceCompanionHttpd.prx
+[2096/5766] Linking CXX shared library core/libs/libs/unpatched/libSceBluetoothHid.prx
+[2097/5766] Linking CXX shared library core/libs/libs/unpatched/libSceCamera.prx
+[2098/5766] Linking CXX shared library core/libs/libs/unpatched/libSceCesCs.prx
+[2099/5766] Linking CXX shared library core/libs/libs/unpatched/libSceCesCs-module.prx
+[2100/5766] Linking CXX shared library core/libs/libs/unpatched/libSceCommonDialog.prx
+[2101/5766] Linking CXX shared library core/libs/libs/unpatched/libSceCompanionHttpd.prx
 --
-[2560/5768] Building CXX object core/libs/prx/libSceAgcDriver/CMakeFiles/agc_shader_memory_tests.dir/Execution/src/PerformanceTraceThread.cpp.o
-[2561/5768] Building CXX object core/libs/prx/libSceAgcDriver/CMakeFiles/agc_shader_memory_tests.dir/Execution/src/GuestMemory.cpp.o
-FAILED: [code=1] core/libs/prx/libSceAgcDriver/CMakeFiles/agc_shader_memory_tests.dir/Execution/src/GuestMemory.cpp.o 
-/usr/bin/c++ -DANYPS5_ENABLE_SPIRV_TOOLS=0 -DAPS5_ENABLE_TIMING_LOG=0 -Icore/libs -Icore/shader/recompiler -Icore/shader/recompiler/RdnaDecoder/include -Icore/shader/recompiler/ControlFlow/include -Icore/shader/recompiler/IntermediateRepresentation/include -Icore/shader/recompiler/Translation/include -Icore/shader/recompiler/Optimization/include -Icore/shader/recompiler/SpirvBackend/include -I3rdparty/SPIRV-Headers/include -I3rdparty/glslang -O3 -DNDEBUG -std=c++20 -arch x86_64 -fexperimental-library -MD -MT core/libs/prx/libSceAgcDriver/CMakeFiles/agc_shader_memory_tests.dir/Execution/src/GuestMemory.cpp.o -MF core/libs/prx/libSceAgcDriver/CMakeFiles/agc_shader_memory_tests.dir/Execution/src/GuestMemory.cpp.o.d -o core/libs/prx/libSceAgcDriver/CMakeFiles/agc_shader_memory_tests.dir/Execution/src/GuestMemory.cpp.o -c core/libs/prx/libSceAgcDriver/Execution/src/GuestMemory.cpp
-In file included from core/libs/prx/libSceAgcDriver/Execution/src/GuestMemory.cpp:8:
-core/libs/prx/libc/include/GuestAllocations.hpp:67:7: warning: 'GuestAllocationsFind_nid_postfix' has C-linkage specified, but returns user-defined type 'Range' which is incompatible with C [-Wreturn-type-c-linkage]
-   67 | Range GuestAllocationsFind_nid_postfix(void* mutation, const void* pointer);
-      |       ^
-core/libs/prx/libc/include/GuestAllocations.hpp:71:7: warning: 'GuestAllocationsAcquire_nid_postfix' has C-linkage specified, but returns user-defined type 'Lease' which is incompatible with C [-Wreturn-type-c-linkage]
---
-   73 | std::shared_ptr<const Range> GuestAllocationsLookup_nid_postfix(std::uintptr_t address, bool next);
-      |                              ^
-core/libs/prx/libSceAgcDriver/Execution/src/GuestMemory.cpp:750:17: error: use of undeclared identifier 'pthread_getattr_np'; did you mean 'pthread_getugid_np'?
-  750 |             if (pthread_getattr_np(pthread_self(), &attributes) != 0) return;
-      |                 ^~~~~~~~~~~~~~~~~~
-      |                 pthread_getugid_np
-/Applications/Xcode_16.4.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX.sdk/usr/include/unistd.h:702:6: note: 'pthread_getugid_np' declared here
-  702 | int      pthread_getugid_np(uid_t *, gid_t *);
-      |          ^
-core/libs/prx/libSceAgcDriver/Execution/src/GuestMemory.cpp:750:36: error: cannot initialize a parameter of type 'uid_t *' (aka 'unsigned int *') with an rvalue of type 'pthread_t _Nonnull' (aka '_opaque_pthread_t *')
-  750 |             if (pthread_getattr_np(pthread_self(), &attributes) != 0) return;
-      |                                    ^~~~~~~~~~~~~~
-/Applications/Xcode_16.4.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX.sdk/usr/include/unistd.h:702:32: note: passing argument to parameter here
-  702 | int      pthread_getugid_np(uid_t *, gid_t *);
-      |                                    ^
-4 warnings and 2 errors generated.
---
-[2566/5768] Building CXX object core/libs/prx/libSceAgcDriver/CMakeFiles/agc_guarded_memory_loads_tests.dir/tests/GuardedMemoryLoads.cpp.o
-[2567/5768] Building CXX object core/libs/prx/libSceAgcDriver/CMakeFiles/agc_shared_write_tests.dir/tests/SharedWrites.cpp.o
-FAILED: [code=1] core/libs/prx/libSceAgcDriver/CMakeFiles/agc_shared_write_tests.dir/tests/SharedWrites.cpp.o 
-/usr/bin/c++ -DAPS5_ENABLE_TIMING_LOG=0 -Icore/libs -O3 -DNDEBUG -std=c++20 -arch x86_64 -fexperimental-library -MD -MT core/libs/prx/libSceAgcDriver/CMakeFiles/agc_shared_write_tests.dir/tests/SharedWrites.cpp.o -MF core/libs/prx/libSceAgcDriver/CMakeFiles/agc_shared_write_tests.dir/tests/SharedWrites.cpp.o.d -o core/libs/prx/libSceAgcDriver/CMakeFiles/agc_shared_write_tests.dir/tests/SharedWrites.cpp.o -c core/libs/prx/libSceAgcDriver/tests/SharedWrites.cpp
-core/libs/prx/libSceAgcDriver/tests/SharedWrites.cpp:62:23: error: use of undeclared identifier 'RUSAGE_THREAD'
-   62 |             getrusage(RUSAGE_THREAD, &before);
-      |                       ^
-core/libs/prx/libSceAgcDriver/tests/SharedWrites.cpp:75:23: error: use of undeclared identifier 'RUSAGE_THREAD'
-   75 |             getrusage(RUSAGE_THREAD, &after);
-      |                       ^
-2 errors generated.
-[2568/5768] Building CXX object core/libs/prx/libSceAgcDriver/CMakeFiles/agc_write_tracking_tests.dir/Execution/src/PerformanceTraceThread.cpp.o
-[2569/5768] Building CXX object core/libs/prx/libSceAgcDriver/CMakeFiles/agc_write_tracking_tests.dir/Execution/src/GuestMemory.cpp.o
-FAILED: [code=1] core/libs/prx/libSceAgcDriver/CMakeFiles/agc_write_tracking_tests.dir/Execution/src/GuestMemory.cpp.o 
-/usr/bin/c++ -DANYPS5_ENABLE_SPIRV_TOOLS=0 -DAPS5_ENABLE_TIMING_LOG=0 -Icore/libs -Icore/shader/recompiler -Icore/shader/recompiler/RdnaDecoder/include -Icore/shader/recompiler/ControlFlow/include -Icore/shader/recompiler/IntermediateRepresentation/include -Icore/shader/recompiler/Translation/include -Icore/shader/recompiler/Optimization/include -Icore/shader/recompiler/SpirvBackend/include -I3rdparty/SPIRV-Headers/include -I3rdparty/glslang -O3 -DNDEBUG -std=c++20 -arch x86_64 -fexperimental-library -MD -MT core/libs/prx/libSceAgcDriver/CMakeFiles/agc_write_tracking_tests.dir/Execution/src/GuestMemory.cpp.o -MF core/libs/prx/libSceAgcDriver/CMakeFiles/agc_write_tracking_tests.dir/Execution/src/GuestMemory.cpp.o.d -o core/libs/prx/libSceAgcDriver/CMakeFiles/agc_write_tracking_tests.dir/Execution/src/GuestMemory.cpp.o -c core/libs/prx/libSceAgcDriver/Execution/src/GuestMemory.cpp
-In file included from core/libs/prx/libSceAgcDriver/Execution/src/GuestMemory.cpp:8:
-core/libs/prx/libc/include/GuestAllocations.hpp:67:7: warning: 'GuestAllocationsFind_nid_postfix' has C-linkage specified, but returns user-defined type 'Range' which is incompatible with C [-Wreturn-type-c-linkage]
-   67 | Range GuestAllocationsFind_nid_postfix(void* mutation, const void* pointer);
-      |       ^
-core/libs/prx/libc/include/GuestAllocations.hpp:71:7: warning: 'GuestAllocationsAcquire_nid_postfix' has C-linkage specified, but returns user-defined type 'Lease' which is incompatible with C [-Wreturn-type-c-linkage]
---
-   73 | std::shared_ptr<const Range> GuestAllocationsLookup_nid_postfix(std::uintptr_t address, bool next);
-      |                              ^
-core/libs/prx/libSceAgcDriver/Execution/src/GuestMemory.cpp:750:17: error: use of undeclared identifier 'pthread_getattr_np'; did you mean 'pthread_getugid_np'?
-  750 |             if (pthread_getattr_np(pthread_self(), &attributes) != 0) return;
-      |                 ^~~~~~~~~~~~~~~~~~
-      |                 pthread_getugid_np
-/Applications/Xcode_16.4.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX.sdk/usr/include/unistd.h:702:6: note: 'pthread_getugid_np' declared here
-  702 | int      pthread_getugid_np(uid_t *, gid_t *);
-      |          ^
-core/libs/prx/libSceAgcDriver/Execution/src/GuestMemory.cpp:750:36: error: cannot initialize a parameter of type 'uid_t *' (aka 'unsigned int *') with an rvalue of type 'pthread_t _Nonnull' (aka '_opaque_pthread_t *')
-  750 |             if (pthread_getattr_np(pthread_self(), &attributes) != 0) return;
-      |                                    ^~~~~~~~~~~~~~
-/Applications/Xcode_16.4.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX.sdk/usr/include/unistd.h:702:32: note: passing argument to parameter here
-  702 | int      pthread_getugid_np(uid_t *, gid_t *);
-      |                                    ^
-4 warnings and 2 errors generated.
---
-[2580/5768] Building CXX object core/libs/prx/libSceAgcDriver/CMakeFiles/agc_draw_inputs_in_place_driver_tests.dir/tests/DrawInputsInPlace.cpp.o
-[2581/5768] Building CXX object core/libs/prx/libSceAgcDriver/CMakeFiles/agc_collect_memo_generation_tests.dir/Execution/src/GuestMemory.cpp.o
-FAILED: [code=1] core/libs/prx/libSceAgcDriver/CMakeFiles/agc_collect_memo_generation_tests.dir/Execution/src/GuestMemory.cpp.o 
-/usr/bin/c++ -DANYPS5_ENABLE_SPIRV_TOOLS=0 -DAPS5_ENABLE_TIMING_LOG=0 -Icore/libs -Icore/shader/recompiler -Icore/shader/recompiler/RdnaDecoder/include -Icore/shader/recompiler/ControlFlow/include -Icore/shader/recompiler/IntermediateRepresentation/include -Icore/shader/recompiler/Translation/include -Icore/shader/recompiler/Optimization/include -Icore/shader/recompiler/SpirvBackend/include -I3rdparty/SPIRV-Headers/include -I3rdparty/glslang -O3 -DNDEBUG -std=c++20 -arch x86_64 -fexperimental-library -MD -MT core/libs/prx/libSceAgcDriver/CMakeFiles/agc_collect_memo_generation_tests.dir/Execution/src/GuestMemory.cpp.o -MF core/libs/prx/libSceAgcDriver/CMakeFiles/agc_collect_memo_generation_tests.dir/Execution/src/GuestMemory.cpp.o.d -o core/libs/prx/libSceAgcDriver/CMakeFiles/agc_collect_memo_generation_tests.dir/Execution/src/GuestMemory.cpp.o -c core/libs/prx/libSceAgcDriver/Execution/src/GuestMemory.cpp
-In file included from core/libs/prx/libSceAgcDriver/Execution/src/GuestMemory.cpp:8:
-core/libs/prx/libc/include/GuestAllocations.hpp:67:7: warning: 'GuestAllocationsFind_nid_postfix' has C-linkage specified, but returns user-defined type 'Range' which is incompatible with C [-Wreturn-type-c-linkage]
-   67 | Range GuestAllocationsFind_nid_postfix(void* mutation, const void* pointer);
-      |       ^
-core/libs/prx/libc/include/GuestAllocations.hpp:71:7: warning: 'GuestAllocationsAcquire_nid_postfix' has C-linkage specified, but returns user-defined type 'Lease' which is incompatible with C [-Wreturn-type-c-linkage]
---
-   73 | std::shared_ptr<const Range> GuestAllocationsLookup_nid_postfix(std::uintptr_t address, bool next);
-      |                              ^
-core/libs/prx/libSceAgcDriver/Execution/src/GuestMemory.cpp:750:17: error: use of undeclared identifier 'pthread_getattr_np'; did you mean 'pthread_getugid_np'?
-  750 |             if (pthread_getattr_np(pthread_self(), &attributes) != 0) return;
-      |                 ^~~~~~~~~~~~~~~~~~
-      |                 pthread_getugid_np
-/Applications/Xcode_16.4.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX.sdk/usr/include/unistd.h:702:6: note: 'pthread_getugid_np' declared here
-  702 | int      pthread_getugid_np(uid_t *, gid_t *);
-      |          ^
-core/libs/prx/libSceAgcDriver/Execution/src/GuestMemory.cpp:750:36: error: cannot initialize a parameter of type 'uid_t *' (aka 'unsigned int *') with an rvalue of type 'pthread_t _Nonnull' (aka '_opaque_pthread_t *')
-  750 |             if (pthread_getattr_np(pthread_self(), &attributes) != 0) return;
-      |                                    ^~~~~~~~~~~~~~
-/Applications/Xcode_16.4.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX.sdk/usr/include/unistd.h:702:32: note: passing argument to parameter here
-  702 | int      pthread_getugid_np(uid_t *, gid_t *);
-      |                                    ^
-4 warnings and 2 errors generated.
---
-[2653/5768] Building CXX object core/libs/prx/libSceAgcDriver/CMakeFiles/agc_command_batch_failure_tests.dir/Graphics/src/Resources.cpp.o
-[2654/5768] Building CXX object core/libs/prx/libSceAgcDriver/CMakeFiles/agc_host_import_sparse_tests.dir/tests/HostImportSparseDmaBuf.cpp.o
-FAILED: [code=1] core/libs/prx/libSceAgcDriver/CMakeFiles/agc_host_import_sparse_tests.dir/tests/HostImportSparseDmaBuf.cpp.o 
-/usr/bin/c++ -DAPS5_ENABLE_TIMING_LOG=0 -Icore/libs -Icore/shader/recompiler -I3rdparty/Vulkan-Headers/include -O3 -DNDEBUG -std=c++20 -arch x86_64 -fexperimental-library -MD -MT core/libs/prx/libSceAgcDriver/CMakeFiles/agc_host_import_sparse_tests.dir/tests/HostImportSparseDmaBuf.cpp.o -MF core/libs/prx/libSceAgcDriver/CMakeFiles/agc_host_import_sparse_tests.dir/tests/HostImportSparseDmaBuf.cpp.o.d -o core/libs/prx/libSceAgcDriver/CMakeFiles/agc_host_import_sparse_tests.dir/tests/HostImportSparseDmaBuf.cpp.o -c core/libs/prx/libSceAgcDriver/tests/HostImportSparseDmaBuf.cpp
-In file included from core/libs/prx/libSceAgcDriver/tests/HostImportSparseDmaBuf.cpp:1:
-In file included from core/libs/prx/libSceAgcDriver/Graphics/include/GuestBufferMemory.hpp:6:
-core/libs/prx/libc/include/GuestAllocations.hpp:67:7: warning: 'GuestAllocationsFind_nid_postfix' has C-linkage specified, but returns user-defined type 'Range' which is incompatible with C [-Wreturn-type-c-linkage]
-   67 | Range GuestAllocationsFind_nid_postfix(void* mutation, const void* pointer);
-      |       ^
---
-   73 | std::shared_ptr<const Range> GuestAllocationsLookup_nid_postfix(std::uintptr_t address, bool next);
-      |                              ^
-core/libs/prx/libSceAgcDriver/tests/HostImportSparseDmaBuf.cpp:231:66: error: use of undeclared identifier 'MFD_CLOEXEC'
-  231 |         backing.file = memfd_create("anyps5-sparse-import-mock", MFD_CLOEXEC | MFD_ALLOW_SEALING);
-      |                                                                  ^
-core/libs/prx/libSceAgcDriver/tests/HostImportSparseDmaBuf.cpp:231:80: error: use of undeclared identifier 'MFD_ALLOW_SEALING'
-  231 |         backing.file = memfd_create("anyps5-sparse-import-mock", MFD_CLOEXEC | MFD_ALLOW_SEALING);
-      |                                                                                ^
-core/libs/prx/libSceAgcDriver/tests/HostImportSparseDmaBuf.cpp:234:43: error: use of undeclared identifier 'F_ADD_SEALS'
-  234 |         if (sealed && fcntl(backing.file, F_ADD_SEALS, F_SEAL_SHRINK) != 0) throw std::runtime_error("cannot seal the backing file");
-      |                                           ^
-core/libs/prx/libSceAgcDriver/tests/HostImportSparseDmaBuf.cpp:234:56: error: use of undeclared identifier 'F_SEAL_SHRINK'
-  234 |         if (sealed && fcntl(backing.file, F_ADD_SEALS, F_SEAL_SHRINK) != 0) throw std::runtime_error("cannot seal the backing file");
-      |                                                        ^
-4 warnings and 4 errors generated.
-[2655/5768] Building CXX object core/libs/prx/libSceAgcDriver/CMakeFiles/agc_driver_presentation_pass_tests.dir/tests/PresentationPass.cpp.o
-[2656/5768] Building CXX object core/libs/prx/libSceAgcDriver/CMakeFiles/agc_performance_overlay_tests.dir/tests/PerformanceOverlay.cpp.o
-In file included from core/libs/prx/libSceAgcDriver/tests/PerformanceOverlay.cpp:5:
---
-[3798/5768] Linking CXX executable tests/guest_init_once_tests
-[3799/5768] Linking CXX executable tests/guest_jxr_stream_tests
+[3800/5766] Linking CXX executable tests/guest_json_copy_failure_tests
+[3801/5766] Linking CXX executable tests/guest_jxr_stream_tests
 ld: warning: reducing alignment of section __DATA,__bss from 0x2000 to 0x1000 because it exceeds segment maximum alignment
-[3800/5768] Linking CXX executable tests/guest_statvfs_tests
-[3801/5768] Linking CXX executable tests/guest_fstatvfs_conversion_tests
-[3802/5768] Linking CXX executable tests/guest_fstatvfs_tests
-[3803/5768] Linking CXX executable tests/guest_utime_forwarding_tests
-[3804/5768] Linking CXX executable tests/guest_fdopendir_tests
-[3805/5768] Linking CXX executable tests/guest_utime_tests
---
-[4062/5768] Linking CXX executable tests/guest_sync_on_address_tests
-[4063/5768] Linking CXX executable tests/guest_raise_exception_tests
-FAILED: [code=1] tests/guest_raise_exception_tests 
-: && /usr/bin/c++ -O3 -DNDEBUG -arch x86_64 -Wl,-search_paths_first -Wl,-headerpad_max_install_names -fexperimental-library core/libs/prx/libkernel/CMakeFiles/guest_raise_exception_tests.dir/__/__/tests/GuestRaiseException.cpp.o -o tests/guest_raise_exception_tests  -Wl,-rpath,build/core/libs/libs/unpatched  core/libs/libs/unpatched/libkernel.prx  core/libs/libs/unpatched/libc.prx && :
-Undefined symbols for architecture x86_64:
-  "_RaiseTestSpinUntilR12", referenced from:
-      Spinning(void*) in GuestRaiseException.cpp.o
-ld: symbol(s) not found for architecture x86_64
-clang++: error: linker command failed with exit code 1 (use -v to see invocation)
-[4064/5768] Linking CXX executable tests/guest_umtx_op_tests
-[4065/5768] Linking CXX executable tests/guest_current_cpu_tests
-[4066/5768] Linking CXX executable tests/guest_getrusage_tests
-[4067/5768] Linking CXX executable tests/guest_thermal_sensors_tests
-[4068/5768] Linking CXX executable tests/guest_available_cpumask_tests
-[4069/5768] Linking CXX executable tests/guest_getlogin_tests
+[3802/5766] Linking CXX executable tests/guest_statvfs_tests
+[3803/5766] Linking CXX executable tests/guest_fstatvfs_conversion_tests
+[3804/5766] Linking CXX executable tests/keyboard_tests
+[3805/5766] Linking CXX executable tests/guest_init_once_tests
+[3806/5766] Linking CXX executable tests/guest_fstatvfs_tests
+[3807/5766] Linking CXX executable tests/guest_posix_spawn_tests

@@ -1,11 +1,5 @@
-[0/2] Re-checking globbed directories...
-[1/390] Linking CXX shared library core/libs/libs/unpatched/libSceAudioIn.prx
-FAILED: [code=1] core/libs/libs/unpatched/libSceAudioIn.prx 
-: && /usr/bin/c++ -O3 -DNDEBUG -arch x86_64 -dynamiclib -Wl,-headerpad_max_install_names -fexperimental-library -Xlinker --exclude-libs -Xlinker ALL -o core/libs/libs/unpatched/libSceAudioIn.prx -install_name @rpath/libSceAudioIn.prx core/libs/prx/libSceAudioIn/CMakeFiles/libSceAudioIn.dir/Export.cpp.o  -Wl,-rpath,@loader_path  3rdparty/SDL2/libSDL2.a  core/libs/libs/unpatched/libkernel.prx  core/libs/libs/unpatched/libc.prx  -lm  -framework CoreVideo  -framework Cocoa  -framework IOKit  -framework ForceFeedback  -framework Carbon  -framework CoreAudio  -framework AudioToolbox  -framework AVFoundation  -framework Foundation  -Xlinker -weak_framework -Xlinker GameController  -Xlinker -weak_framework -Xlinker Metal  -Xlinker -weak_framework -Xlinker QuartzCore  -Xlinker -weak_framework -Xlinker CoreHaptics && :
-ld: unknown options: --exclude-libs 
-clang++: error: linker command failed with exit code 1 (use -v to see invocation)
-[2/390] cd build/core/libs/prx/libSceAgcDriver && /opt/homebrew/bin/cmake -DGIT=/opt/homebrew/bin/git -DSOURCE=/Users/runner/work/AnyPS5/AnyPS5 -DOUTPUT=build/core/libs/prx/libSceAgcDriver/generated/prx/libSceAgcDriver/TraceRevision.hpp -P core/libs/prx/libSceAgcDriver/trace_revision.cmake
-[3/388] Building CXX object core/libs/prx/libSceAgcDriver/CMakeFiles/libSceAgcDriver.dir/Graphics/src/GuestBufferMemory.cpp.o
+[1/386] cd build/core/libs/prx/libSceAgcDriver && /opt/homebrew/bin/cmake -DGIT=/opt/homebrew/bin/git -DSOURCE=/Users/runner/work/AnyPS5/AnyPS5 -DOUTPUT=build/core/libs/prx/libSceAgcDriver/generated/prx/libSceAgcDriver/TraceRevision.hpp -P core/libs/prx/libSceAgcDriver/trace_revision.cmake
+[2/383] Building CXX object core/libs/prx/libSceAgcDriver/CMakeFiles/libSceAgcDriver.dir/Graphics/src/GuestBufferMemory.cpp.o
 FAILED: [code=1] core/libs/prx/libSceAgcDriver/CMakeFiles/libSceAgcDriver.dir/Graphics/src/GuestBufferMemory.cpp.o 
 /usr/bin/c++ -DANYPS5_ENABLE_SPIRV_TOOLS=0 -DAPS5_ENABLE_TIMING_LOG=0 -DlibSceAgcDriver_EXPORTS -Icore/libs -Ibuild/core/libs/prx/libSceAgcDriver/generated -Icore/shader/recompiler/RdnaDecoder/include -I3rdparty/Vulkan-Headers/include -I3rdparty/SPIRV-Headers/include -Icore/shader/recompiler -Icore/shader/recompiler/ControlFlow/include -Icore/shader/recompiler/IntermediateRepresentation/include -Icore/shader/recompiler/Translation/include -Icore/shader/recompiler/Optimization/include -Icore/shader/recompiler/SpirvBackend/include -I3rdparty/glslang -Icore/Decoder/Png/include -Ibuild/3rdparty/SDL2/include -Ibuild/3rdparty/SDL2/include/SDL2 -Ibuild/3rdparty/SDL2/include-config-release/SDL2 -I3rdparty/zstd/build/cmake/../../lib -isystem 3rdparty/libjpeg-turbo/src -isystem build/libjpeg-turbo/include -O3 -DNDEBUG -std=c++20 -arch x86_64 -fPIC -fexperimental-library -MD -MT core/libs/prx/libSceAgcDriver/CMakeFiles/libSceAgcDriver.dir/Graphics/src/GuestBufferMemory.cpp.o -MF core/libs/prx/libSceAgcDriver/CMakeFiles/libSceAgcDriver.dir/Graphics/src/GuestBufferMemory.cpp.o.d -o core/libs/prx/libSceAgcDriver/CMakeFiles/libSceAgcDriver.dir/Graphics/src/GuestBufferMemory.cpp.o -c core/libs/prx/libSceAgcDriver/Graphics/src/GuestBufferMemory.cpp
 In file included from core/libs/prx/libSceAgcDriver/Graphics/src/GuestBufferMemory.cpp:2:
@@ -16,93 +10,17 @@ core/libs/prx/libc/include/GuestAllocations.hpp:67:7: warning: 'GuestAllocations
 --
    73 | std::shared_ptr<const Range> GuestAllocationsLookup_nid_postfix(std::uintptr_t address, bool next);
       |                              ^
-core/libs/prx/libSceAgcDriver/Graphics/src/GuestBufferMemory.cpp:24:10: fatal error: 'linux/udmabuf.h' file not found
-   24 | #include <linux/udmabuf.h>
-      |          ^~~~~~~~~~~~~~~~~
-4 warnings and 1 error generated.
-[4/388] Building CXX object core/libs/prx/libSceAgcDriver/CMakeFiles/libSceAgcDriver.dir/Execution/src/GuestMemory.cpp.o
-FAILED: [code=1] core/libs/prx/libSceAgcDriver/CMakeFiles/libSceAgcDriver.dir/Execution/src/GuestMemory.cpp.o 
-/usr/bin/c++ -DANYPS5_ENABLE_SPIRV_TOOLS=0 -DAPS5_ENABLE_TIMING_LOG=0 -DlibSceAgcDriver_EXPORTS -Icore/libs -Ibuild/core/libs/prx/libSceAgcDriver/generated -Icore/shader/recompiler/RdnaDecoder/include -I3rdparty/Vulkan-Headers/include -I3rdparty/SPIRV-Headers/include -Icore/shader/recompiler -Icore/shader/recompiler/ControlFlow/include -Icore/shader/recompiler/IntermediateRepresentation/include -Icore/shader/recompiler/Translation/include -Icore/shader/recompiler/Optimization/include -Icore/shader/recompiler/SpirvBackend/include -I3rdparty/glslang -Icore/Decoder/Png/include -Ibuild/3rdparty/SDL2/include -Ibuild/3rdparty/SDL2/include/SDL2 -Ibuild/3rdparty/SDL2/include-config-release/SDL2 -I3rdparty/zstd/build/cmake/../../lib -isystem 3rdparty/libjpeg-turbo/src -isystem build/libjpeg-turbo/include -O3 -DNDEBUG -std=c++20 -arch x86_64 -fPIC -fexperimental-library -MD -MT core/libs/prx/libSceAgcDriver/CMakeFiles/libSceAgcDriver.dir/Execution/src/GuestMemory.cpp.o -MF core/libs/prx/libSceAgcDriver/CMakeFiles/libSceAgcDriver.dir/Execution/src/GuestMemory.cpp.o.d -o core/libs/prx/libSceAgcDriver/CMakeFiles/libSceAgcDriver.dir/Execution/src/GuestMemory.cpp.o -c core/libs/prx/libSceAgcDriver/Execution/src/GuestMemory.cpp
-In file included from core/libs/prx/libSceAgcDriver/Execution/src/GuestMemory.cpp:8:
-core/libs/prx/libc/include/GuestAllocations.hpp:67:7: warning: 'GuestAllocationsFind_nid_postfix' has C-linkage specified, but returns user-defined type 'Range' which is incompatible with C [-Wreturn-type-c-linkage]
-   67 | Range GuestAllocationsFind_nid_postfix(void* mutation, const void* pointer);
-      |       ^
-core/libs/prx/libc/include/GuestAllocations.hpp:71:7: warning: 'GuestAllocationsAcquire_nid_postfix' has C-linkage specified, but returns user-defined type 'Lease' which is incompatible with C [-Wreturn-type-c-linkage]
---
-   73 | std::shared_ptr<const Range> GuestAllocationsLookup_nid_postfix(std::uintptr_t address, bool next);
-      |                              ^
-core/libs/prx/libSceAgcDriver/Execution/src/GuestMemory.cpp:750:17: error: use of undeclared identifier 'pthread_getattr_np'; did you mean 'pthread_getugid_np'?
-  750 |             if (pthread_getattr_np(pthread_self(), &attributes) != 0) return;
-      |                 ^~~~~~~~~~~~~~~~~~
-      |                 pthread_getugid_np
-/Applications/Xcode_16.4.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX.sdk/usr/include/unistd.h:702:6: note: 'pthread_getugid_np' declared here
-  702 | int      pthread_getugid_np(uid_t *, gid_t *);
-      |          ^
-core/libs/prx/libSceAgcDriver/Execution/src/GuestMemory.cpp:750:36: error: cannot initialize a parameter of type 'uid_t *' (aka 'unsigned int *') with an rvalue of type 'pthread_t _Nonnull' (aka '_opaque_pthread_t *')
-  750 |             if (pthread_getattr_np(pthread_self(), &attributes) != 0) return;
-      |                                    ^~~~~~~~~~~~~~
-/Applications/Xcode_16.4.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX.sdk/usr/include/unistd.h:702:32: note: passing argument to parameter here
-  702 | int      pthread_getugid_np(uid_t *, gid_t *);
-      |                                    ^
-4 warnings and 2 errors generated.
-[5/388] Building CXX object core/libs/prx/libSceAgcDriver/CMakeFiles/libSceAgcDriver.dir/Execution/src/FrameRecorder.cpp.o
-FAILED: [code=1] core/libs/prx/libSceAgcDriver/CMakeFiles/libSceAgcDriver.dir/Execution/src/FrameRecorder.cpp.o 
-/usr/bin/c++ -DANYPS5_ENABLE_SPIRV_TOOLS=0 -DAPS5_ENABLE_TIMING_LOG=0 -DlibSceAgcDriver_EXPORTS -Icore/libs -Ibuild/core/libs/prx/libSceAgcDriver/generated -Icore/shader/recompiler/RdnaDecoder/include -I3rdparty/Vulkan-Headers/include -I3rdparty/SPIRV-Headers/include -Icore/shader/recompiler -Icore/shader/recompiler/ControlFlow/include -Icore/shader/recompiler/IntermediateRepresentation/include -Icore/shader/recompiler/Translation/include -Icore/shader/recompiler/Optimization/include -Icore/shader/recompiler/SpirvBackend/include -I3rdparty/glslang -Icore/Decoder/Png/include -Ibuild/3rdparty/SDL2/include -Ibuild/3rdparty/SDL2/include/SDL2 -Ibuild/3rdparty/SDL2/include-config-release/SDL2 -I3rdparty/zstd/build/cmake/../../lib -isystem 3rdparty/libjpeg-turbo/src -isystem build/libjpeg-turbo/include -O3 -DNDEBUG -std=c++20 -arch x86_64 -fPIC -fexperimental-library -MD -MT core/libs/prx/libSceAgcDriver/CMakeFiles/libSceAgcDriver.dir/Execution/src/FrameRecorder.cpp.o -MF core/libs/prx/libSceAgcDriver/CMakeFiles/libSceAgcDriver.dir/Execution/src/FrameRecorder.cpp.o.d -o core/libs/prx/libSceAgcDriver/CMakeFiles/libSceAgcDriver.dir/Execution/src/FrameRecorder.cpp.o -c core/libs/prx/libSceAgcDriver/Execution/src/FrameRecorder.cpp
-In file included from core/libs/prx/libSceAgcDriver/Execution/src/FrameRecorder.cpp:3:
-In file included from core/libs/prx/libSceAgcDriver/Execution/include/Driver/Driver.hpp:6:
-In file included from core/libs/prx/libSceAgcDriver/Execution/include/Driver/DeviceAccess.hpp:4:
-In file included from core/libs/prx/libSceAgcDriver/Execution/include/VulkanDevice.hpp:9:
-In file included from core/libs/prx/libSceAgcDriver/Execution/include/Recipe.hpp:6:
---
-   50 | extern "C" std::vector<std::filesystem::path> WrittenPaths_nid_no_patch();
-      |                                               ^
-core/libs/prx/libSceAgcDriver/Execution/src/FrameRecorder.cpp:62:22: error: use of undeclared identifier 'environ'
-   62 |     char** entries = environ;
-      |                      ^
-11 warnings and 1 error generated.
-[6/388] Building CXX object core/libs/prx/libSceAgcDriver/CMakeFiles/libSceAgcDriver.dir/Execution/src/Driver/Lifecycle.cpp.o
-FAILED: [code=1] core/libs/prx/libSceAgcDriver/CMakeFiles/libSceAgcDriver.dir/Execution/src/Driver/Lifecycle.cpp.o 
-/usr/bin/c++ -DANYPS5_ENABLE_SPIRV_TOOLS=0 -DAPS5_ENABLE_TIMING_LOG=0 -DlibSceAgcDriver_EXPORTS -Icore/libs -Ibuild/core/libs/prx/libSceAgcDriver/generated -Icore/shader/recompiler/RdnaDecoder/include -I3rdparty/Vulkan-Headers/include -I3rdparty/SPIRV-Headers/include -Icore/shader/recompiler -Icore/shader/recompiler/ControlFlow/include -Icore/shader/recompiler/IntermediateRepresentation/include -Icore/shader/recompiler/Translation/include -Icore/shader/recompiler/Optimization/include -Icore/shader/recompiler/SpirvBackend/include -I3rdparty/glslang -Icore/Decoder/Png/include -Ibuild/3rdparty/SDL2/include -Ibuild/3rdparty/SDL2/include/SDL2 -Ibuild/3rdparty/SDL2/include-config-release/SDL2 -I3rdparty/zstd/build/cmake/../../lib -isystem 3rdparty/libjpeg-turbo/src -isystem build/libjpeg-turbo/include -O3 -DNDEBUG -std=c++20 -arch x86_64 -fPIC -fexperimental-library -MD -MT core/libs/prx/libSceAgcDriver/CMakeFiles/libSceAgcDriver.dir/Execution/src/Driver/Lifecycle.cpp.o -MF core/libs/prx/libSceAgcDriver/CMakeFiles/libSceAgcDriver.dir/Execution/src/Driver/Lifecycle.cpp.o.d -o core/libs/prx/libSceAgcDriver/CMakeFiles/libSceAgcDriver.dir/Execution/src/Driver/Lifecycle.cpp.o -c core/libs/prx/libSceAgcDriver/Execution/src/Driver/Lifecycle.cpp
-In file included from core/libs/prx/libSceAgcDriver/Execution/src/Driver/Lifecycle.cpp:1:
-In file included from core/libs/prx/libSceAgcDriver/Execution/include/AsyncLog.hpp:3:
-core/libs/prx/libc/include/Shutdown.hpp:10:28: warning: 'LibcShutdownToken_nid_postfix' has C-linkage specified, but returns user-defined type 'std::stop_token' which is incompatible with C [-Wreturn-type-c-linkage]
-   10 | extern "C" std::stop_token LibcShutdownToken_nid_postfix();
-      |                            ^
---
-   73 | std::shared_ptr<const Range> GuestAllocationsLookup_nid_postfix(std::uintptr_t address, bool next);
-      |                              ^
-core/libs/prx/libSceAgcDriver/Execution/src/Driver/Lifecycle.cpp:77:138: error: use of undeclared identifier 'MAP_FIXED_NOREPLACE'
-   77 |     mapped = mmap(reinterpret_cast<void*>(DriverMemoryAddress), DriverMemoryBytes, PROT_READ | PROT_WRITE, MAP_PRIVATE | MAP_ANONYMOUS | MAP_FIXED_NOREPLACE, -1, 0);
-      |                                                                                                                                          ^
-core/libs/prx/libSceAgcDriver/Execution/src/Driver/Lifecycle.cpp:110:17: error: use of undeclared identifier 'pthread_getattr_np'
-  110 |             if (pthread_getattr_np(pthread_self(), &attributes) != 0) return;
-      |                 ^
-5 warnings and 2 errors generated.
-[7/388] Building CXX object core/libs/prx/libSceAgcDriver/CMakeFiles/libSceAgcDriver.dir/Graphics/src/Texture.cpp.o
-FAILED: [code=1] core/libs/prx/libSceAgcDriver/CMakeFiles/libSceAgcDriver.dir/Graphics/src/Texture.cpp.o 
-/usr/bin/c++ -DANYPS5_ENABLE_SPIRV_TOOLS=0 -DAPS5_ENABLE_TIMING_LOG=0 -DlibSceAgcDriver_EXPORTS -Icore/libs -Ibuild/core/libs/prx/libSceAgcDriver/generated -Icore/shader/recompiler/RdnaDecoder/include -I3rdparty/Vulkan-Headers/include -I3rdparty/SPIRV-Headers/include -Icore/shader/recompiler -Icore/shader/recompiler/ControlFlow/include -Icore/shader/recompiler/IntermediateRepresentation/include -Icore/shader/recompiler/Translation/include -Icore/shader/recompiler/Optimization/include -Icore/shader/recompiler/SpirvBackend/include -I3rdparty/glslang -Icore/Decoder/Png/include -Ibuild/3rdparty/SDL2/include -Ibuild/3rdparty/SDL2/include/SDL2 -Ibuild/3rdparty/SDL2/include-config-release/SDL2 -I3rdparty/zstd/build/cmake/../../lib -isystem 3rdparty/libjpeg-turbo/src -isystem build/libjpeg-turbo/include -O3 -DNDEBUG -std=c++20 -arch x86_64 -fPIC -fexperimental-library -MD -MT core/libs/prx/libSceAgcDriver/CMakeFiles/libSceAgcDriver.dir/Graphics/src/Texture.cpp.o -MF core/libs/prx/libSceAgcDriver/CMakeFiles/libSceAgcDriver.dir/Graphics/src/Texture.cpp.o.d -o core/libs/prx/libSceAgcDriver/CMakeFiles/libSceAgcDriver.dir/Graphics/src/Texture.cpp.o -c core/libs/prx/libSceAgcDriver/Graphics/src/Texture.cpp
-In file included from core/libs/prx/libSceAgcDriver/Graphics/src/Texture.cpp:1:
-In file included from core/libs/prx/libSceAgcDriver/Execution/include/AsyncLog.hpp:3:
-core/libs/prx/libc/include/Shutdown.hpp:10:28: warning: 'LibcShutdownToken_nid_postfix' has C-linkage specified, but returns user-defined type 'std::stop_token' which is incompatible with C [-Wreturn-type-c-linkage]
-   10 | extern "C" std::stop_token LibcShutdownToken_nid_postfix();
-      |                            ^
---
-In file included from /Applications/Xcode_16.4.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX.sdk/usr/include/c++/v1/__atomic/atomic_sync.h:12:
-In file included from /Applications/Xcode_16.4.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX.sdk/usr/include/c++/v1/__atomic/contention_t.h:12:
-/Applications/Xcode_16.4.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX.sdk/usr/include/c++/v1/__atomic/cxx_atomic_impl.h:274:37: error: _Atomic cannot be applied to type 'std::shared_ptr<const AgcDriver::Graphics::(anonymous namespace)::PendingList::Snapshot>' which is not trivially copyable
-  274 |   _LIBCPP_DISABLE_EXTENSION_WARNING _Atomic(_Tp) __a_value;
-      |                                     ^
-/Applications/Xcode_16.4.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX.sdk/usr/include/c++/v1/__atomic/cxx_atomic_impl.h:501:35: note: in instantiation of template class 'std::__cxx_atomic_base_impl<std::shared_ptr<const AgcDriver::Graphics::(anonymous namespace)::PendingList::Snapshot>>' requested here
-  501 | struct __cxx_atomic_impl : public _Base {
-      |                                   ^
-/Applications/Xcode_16.4.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX.sdk/usr/include/c++/v1/__atomic/atomic_base.h:33:34: note: in instantiation of template class 'std::__cxx_atomic_impl<std::shared_ptr<const AgcDriver::Graphics::(anonymous namespace)::PendingList::Snapshot>>' requested here
---
-In file included from /Applications/Xcode_16.4.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX.sdk/usr/include/c++/v1/__atomic/atomic_sync.h:12:
-In file included from /Applications/Xcode_16.4.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX.sdk/usr/include/c++/v1/__atomic/contention_t.h:12:
-/Applications/Xcode_16.4.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX.sdk/usr/include/c++/v1/__atomic/cxx_atomic_impl.h:502:17: error: static assertion failed due to requirement 'is_trivially_copyable<std::shared_ptr<const AgcDriver::Graphics::(anonymous namespace)::PendingList::Snapshot>>::value': std::atomic<T> requires that 'T' be a trivially copyable type
-  502 |   static_assert(is_trivially_copyable<_Tp>::value, "std::atomic<T> requires that 'T' be a trivially copyable type");
-      |                 ^~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
-/Applications/Xcode_16.4.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX.sdk/usr/include/c++/v1/__atomic/atomic_base.h:33:34: note: in instantiation of template class 'std::__cxx_atomic_impl<std::shared_ptr<const AgcDriver::Graphics::(anonymous namespace)::PendingList::Snapshot>>' requested here
-   33 |   mutable __cxx_atomic_impl<_Tp> __a_;
-      |                                  ^
-/Applications/Xcode_16.4.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX.sdk/usr/include/c++/v1/__atomic/atomic.h:38:24: note: in instantiation of template class 'std::__atomic_base<std::shared_ptr<const AgcDriver::Graphics::(anonymous namespace)::PendingList::Snapshot>>' requested here
+core/libs/prx/libSceAgcDriver/Graphics/src/GuestBufferMemory.cpp:3841:64: error: use of undeclared identifier 'MFD_CLOEXEC'
+ 3841 |     const int file = memfd_create("aps5-dma-buf-import-probe", MFD_CLOEXEC | MFD_ALLOW_SEALING);
+      |                                                                ^
+core/libs/prx/libSceAgcDriver/Graphics/src/GuestBufferMemory.cpp:3841:78: error: use of undeclared identifier 'MFD_ALLOW_SEALING'
+ 3841 |     const int file = memfd_create("aps5-dma-buf-import-probe", MFD_CLOEXEC | MFD_ALLOW_SEALING);
+      |                                                                              ^
+core/libs/prx/libSceAgcDriver/Graphics/src/GuestBufferMemory.cpp:3847:72: error: use of undeclared identifier 'F_ADD_SEALS'
+ 3847 |     if (ftruncate(file, static_cast<off_t>(bytes)) == 0 && fcntl(file, F_ADD_SEALS, F_SEAL_SHRINK) == 0) mapped = mmap(nullptr, bytes, PROT_READ | PROT_WRITE, MAP_SHARED, file, 0);
+      |                                                                        ^
+core/libs/prx/libSceAgcDriver/Graphics/src/GuestBufferMemory.cpp:3847:85: error: use of undeclared identifier 'F_SEAL_SHRINK'
+ 3847 |     if (ftruncate(file, static_cast<off_t>(bytes)) == 0 && fcntl(file, F_ADD_SEALS, F_SEAL_SHRINK) == 0) mapped = mmap(nullptr, bytes, PROT_READ | PROT_WRITE, MAP_SHARED, file, 0);
+      |                                                                                     ^
+4 warnings and 4 errors generated.
+ninja: build stopped: cannot make progress due to previous errors.
