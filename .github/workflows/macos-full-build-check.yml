@@ -87,6 +87,7 @@ jobs:
             [ -f "$log" ] || continue
             grep -E -B2 -A6 'error:|Undefined symbols|ld: |FAILED: |\(Failed\)|tests passed|tests failed' "$log" | sed 's|'"$GITHUB_WORKSPACE"'/||g' | head -20000 > "$dir/$log" || true
           done
+          [ -f ctest.log ] && sed 's|'"$GITHUB_WORKSPACE"'/||g' ctest.log | gzip -9 > "$dir/ctest-full.log.gz"
           name="${GITHUB_REF_NAME//\//-}-${{ matrix.runner }}"
           cd "$RUNNER_TEMP"
           git clone --depth 1 --branch ci-logs "https://x-access-token:${GH_TOKEN}@github.com/${GITHUB_REPOSITORY}" logs 2>/dev/null || { git init -q logs && git -C logs checkout -q -b ci-logs && git -C logs remote add origin "https://x-access-token:${GH_TOKEN}@github.com/${GITHUB_REPOSITORY}"; }
