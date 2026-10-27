@@ -1,0 +1,109 @@
+[1/987] cd build/core/libs/prx/libSceAgcDriver && /opt/homebrew/bin/cmake -DGIT=/opt/homebrew/bin/git -DSOURCE=/Users/runner/work/AnyPS5/AnyPS5 -DOUTPUT=build/core/libs/prx/libSceAgcDriver/generated/prx/libSceAgcDriver/TraceRevision.hpp -P core/libs/prx/libSceAgcDriver/trace_revision.cmake
+[2/987] Building CXX object core/libs/prx/libkernel/CMakeFiles/libkernel.dir/System/src/Exception.cpp.o
+FAILED: [code=1] core/libs/prx/libkernel/CMakeFiles/libkernel.dir/System/src/Exception.cpp.o 
+/usr/bin/c++ -DAPS5_ENABLE_TIMING_LOG=0 -Dlibkernel_EXPORTS -Icore/libs -Icore/libs/nid/include -O3 -DNDEBUG -std=gnu++20 -arch x86_64 -fPIC -fexperimental-library -MD -MT core/libs/prx/libkernel/CMakeFiles/libkernel.dir/System/src/Exception.cpp.o -MF core/libs/prx/libkernel/CMakeFiles/libkernel.dir/System/src/Exception.cpp.o.d -o core/libs/prx/libkernel/CMakeFiles/libkernel.dir/System/src/Exception.cpp.o -c core/libs/prx/libkernel/System/src/Exception.cpp
+In file included from core/libs/prx/libkernel/System/src/Exception.cpp:5:
+core/libs/prx/libc/include/General.hpp:34:34: warning: 'ResolvePath_nid_no_patch' has C-linkage specified, but returns user-defined type 'std::filesystem::path' which is incompatible with C [-Wreturn-type-c-linkage]
+   34 | extern "C" std::filesystem::path ResolvePath_nid_no_patch(const char* path);
+      |                                  ^
+core/libs/prx/libc/include/General.hpp:36:34: warning: 'ResolvePathOrRelinkedModule_nid_no_patch' has C-linkage specified, but returns user-defined type 'std::filesystem::path' which is incompatible with C [-Wreturn-type-c-linkage]
+--
+   50 | extern "C" std::vector<std::filesystem::path> WrittenPaths_nid_no_patch();
+      |                                               ^
+core/libs/prx/libkernel/System/src/Exception.cpp:903:19: error: static assertion failed due to requirement 'sizeof (m.fpstate) <= sizeof(__darwin_x86_float_state64) - __builtin_offsetof(__darwin_x86_float_state64, __fpu_fcw)'
+  903 |     static_assert(sizeof(m.fpstate) <= sizeof(_STRUCT_X86_FLOAT_STATE64) - offsetof(_STRUCT_X86_FLOAT_STATE64, __fpu_fcw) && FxsaveRegisterBytes <= sizeof(m.fpstate));
+      |                   ^~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+core/libs/prx/libkernel/System/src/Exception.cpp:903:37: note: expression evaluates to '832 <= 516'
+  903 |     static_assert(sizeof(m.fpstate) <= sizeof(_STRUCT_X86_FLOAT_STATE64) - offsetof(_STRUCT_X86_FLOAT_STATE64, __fpu_fcw) && FxsaveRegisterBytes <= sizeof(m.fpstate));
+      |                   ~~~~~~~~~~~~~~~~~~^~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+6 warnings and 1 error generated.
+[3/987] Building CXX object core/libs/prx/libkernel/CMakeFiles/libkernel.dir/File/src/Stdio.cpp.o
+FAILED: [code=1] core/libs/prx/libkernel/CMakeFiles/libkernel.dir/File/src/Stdio.cpp.o 
+/usr/bin/c++ -DAPS5_ENABLE_TIMING_LOG=0 -Dlibkernel_EXPORTS -Icore/libs -Icore/libs/nid/include -O3 -DNDEBUG -std=gnu++20 -arch x86_64 -fPIC -fexperimental-library -MD -MT core/libs/prx/libkernel/CMakeFiles/libkernel.dir/File/src/Stdio.cpp.o -MF core/libs/prx/libkernel/CMakeFiles/libkernel.dir/File/src/Stdio.cpp.o.d -o core/libs/prx/libkernel/CMakeFiles/libkernel.dir/File/src/Stdio.cpp.o -c core/libs/prx/libkernel/File/src/Stdio.cpp
+In file included from core/libs/prx/libkernel/File/src/Stdio.cpp:2:
+In file included from core/libs/prx/libc/include/Api.hpp:10:
+In file included from core/libs/prx/libc/include/exceptions/Unwind.hpp:9:
+core/libs/prx/libc/include/General.hpp:34:34: warning: 'ResolvePath_nid_no_patch' has C-linkage specified, but returns user-defined type 'std::filesystem::path' which is incompatible with C [-Wreturn-type-c-linkage]
+   34 | extern "C" std::filesystem::path ResolvePath_nid_no_patch(const char* path);
+--
+  136 | KernelEqueueRef EqueuePin_nid_postfix(KernelEqueue eq);
+      |                 ^
+core/libs/prx/libkernel/File/src/Stdio.cpp:1197:11: error: no member named 'fdatasync' in the global namespace
+ 1197 |     if (::fdatasync(fd) != 0) return SceErrorFromErrno(errno);
+      |         ~~^
+core/libs/prx/libkernel/File/src/Stdio.cpp:1250:14: error: member access into incomplete type 'const struct dirent64'
+ 1250 |     if (entry.d_type != DT_LNK && entry.d_type != DT_UNKNOWN) return entry.d_type;
+      |              ^
+core/libs/prx/libkernel/File/src/Stdio.cpp:1249:58: note: forward declaration of 'dirent64'
+ 1249 | static unsigned char GuestEntryType(int fd, const struct dirent64& entry, bool followLinks) {
+      |                                                          ^
+core/libs/prx/libkernel/File/src/Stdio.cpp:1250:40: error: member access into incomplete type 'const struct dirent64'
+ 1250 |     if (entry.d_type != DT_LNK && entry.d_type != DT_UNKNOWN) return entry.d_type;
+      |                                        ^
+core/libs/prx/libkernel/File/src/Stdio.cpp:1249:58: note: forward declaration of 'dirent64'
+ 1249 | static unsigned char GuestEntryType(int fd, const struct dirent64& entry, bool followLinks) {
+      |                                                          ^
+core/libs/prx/libkernel/File/src/Stdio.cpp:1250:75: error: member access into incomplete type 'const struct dirent64'
+ 1250 |     if (entry.d_type != DT_LNK && entry.d_type != DT_UNKNOWN) return entry.d_type;
+      |                                                                           ^
+core/libs/prx/libkernel/File/src/Stdio.cpp:1249:58: note: forward declaration of 'dirent64'
+ 1249 | static unsigned char GuestEntryType(int fd, const struct dirent64& entry, bool followLinks) {
+      |                                                          ^
+core/libs/prx/libkernel/File/src/Stdio.cpp:1251:14: error: member access into incomplete type 'const struct dirent64'
+ 1251 |     if (entry.d_type == DT_LNK && !followLinks) return DT_LNK;
+      |              ^
+core/libs/prx/libkernel/File/src/Stdio.cpp:1249:58: note: forward declaration of 'dirent64'
+ 1249 | static unsigned char GuestEntryType(int fd, const struct dirent64& entry, bool followLinks) {
+      |                                                          ^
+core/libs/prx/libkernel/File/src/Stdio.cpp:1254:43: error: member access into incomplete type 'const struct dirent64'
+ 1254 |     const bool found = ::fstatat(fd, entry.d_name, &target, followLinks ? 0 : AT_SYMLINK_NOFOLLOW) == 0;
+      |                                           ^
+core/libs/prx/libkernel/File/src/Stdio.cpp:1249:58: note: forward declaration of 'dirent64'
+ 1249 | static unsigned char GuestEntryType(int fd, const struct dirent64& entry, bool followLinks) {
+      |                                                          ^
+core/libs/prx/libkernel/File/src/Stdio.cpp:1256:29: error: member access into incomplete type 'const struct dirent64'
+ 1256 |     if (!found) return entry.d_type;
+      |                             ^
+core/libs/prx/libkernel/File/src/Stdio.cpp:1249:58: note: forward declaration of 'dirent64'
+ 1249 | static unsigned char GuestEntryType(int fd, const struct dirent64& entry, bool followLinks) {
+      |                                                          ^
+core/libs/prx/libkernel/File/src/Stdio.cpp:1260:17: error: member access into incomplete type 'const struct dirent64'
+ 1260 |     return entry.d_type;
+      |                 ^
+core/libs/prx/libkernel/File/src/Stdio.cpp:1249:58: note: forward declaration of 'dirent64'
+ 1249 | static unsigned char GuestEntryType(int fd, const struct dirent64& entry, bool followLinks) {
+      |                                                          ^
+core/libs/prx/libkernel/File/src/Stdio.cpp:1283:33: error: use of undeclared identifier 'SYS_getdents64'
+ 1283 |     const auto read = ::syscall(SYS_getdents64, fd, host.data(), host.size());
+      |                                 ^
+core/libs/prx/libkernel/File/src/Stdio.cpp:1290:50: error: member access into incomplete type 'const struct dirent64'
+ 1290 |         const auto nameLength = std::strlen(entry->d_name);
+      |                                                  ^
+core/libs/prx/libkernel/File/src/Stdio.cpp:1249:58: note: forward declaration of 'dirent64'
+ 1249 | static unsigned char GuestEntryType(int fd, const struct dirent64& entry, bool followLinks) {
+      |                                                          ^
+core/libs/prx/libkernel/File/src/Stdio.cpp:1299:65: error: member access into incomplete type 'const struct dirent64'
+ 1299 |         const auto fileNumber = static_cast<std::uint32_t>(entry->d_ino);
+      |                                                                 ^
+core/libs/prx/libkernel/File/src/Stdio.cpp:1249:58: note: forward declaration of 'dirent64'
+ 1249 | static unsigned char GuestEntryType(int fd, const struct dirent64& entry, bool followLinks) {
+      |                                                          ^
+core/libs/prx/libkernel/File/src/Stdio.cpp:1306:50: error: member access into incomplete type 'const struct dirent64'
+ 1306 |         std::memcpy(out + GuestHeaderBytes, entry->d_name, nameLength);
+      |                                                  ^
+core/libs/prx/libkernel/File/src/Stdio.cpp:1249:58: note: forward declaration of 'dirent64'
+ 1249 | static unsigned char GuestEntryType(int fd, const struct dirent64& entry, bool followLinks) {
+      |                                                          ^
+core/libs/prx/libkernel/File/src/Stdio.cpp:1308:23: error: member access into incomplete type 'const struct dirent64'
+ 1308 |         resume = entry->d_off;
+      |                       ^
+core/libs/prx/libkernel/File/src/Stdio.cpp:1249:58: note: forward declaration of 'dirent64'
+ 1249 | static unsigned char GuestEntryType(int fd, const struct dirent64& entry, bool followLinks) {
+      |                                                          ^
+core/libs/prx/libkernel/File/src/Stdio.cpp:1309:24: error: member access into incomplete type 'const struct dirent64'
+ 1309 |         offset += entry->d_reclen;
+      |                        ^
+core/libs/prx/libkernel/File/src/Stdio.cpp:1249:58: note: forward declaration of 'dirent64'
+ 1249 | static unsigned char GuestEntryType(int fd, const struct dirent64& entry, bool followLinks) {
+      |                                                          ^
+12 warnings and 14 errors generated.
