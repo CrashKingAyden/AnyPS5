@@ -13,11 +13,32 @@
 #include <string>
 #include <string_view>
 #include <unordered_set>
+#ifdef __APPLE__
+#include <cerrno>
+#include <xlocale.h>
+#endif
 
 #include "SDL_keyboard.h"
 #include "SDL_filesystem.h"
 
 namespace {
+
+std::from_chars_result parseDouble(const char* first, const char* last, double& value) {
+#ifdef __APPLE__
+    if (first == last || *first == '+' || std::isspace(static_cast<unsigned char>(*first))) return {first, std::errc::invalid_argument};
+    const std::string text(first, last);
+    char* end = nullptr;
+    errno = 0;
+    const double parsed = strtod_l(text.c_str(), &end, LC_C_LOCALE);
+    const auto* stop = first + (end - text.c_str());
+    if (stop == first) return {first, std::errc::invalid_argument};
+    if (errno == ERANGE) return {stop, std::errc::result_out_of_range};
+    value = parsed;
+    return {stop, std::errc{}};
+#else
+    return std::from_chars(first, last, value);
+#endif
+}
 
 struct InputAction {
     std::string_view name;
@@ -189,7 +210,7 @@ int parseDeadzonePercent(std::string_view value) {
 double parseMouseSensitivity(std::string_view value) {
     double parsed = 0.0;
     const auto end = value.data() + value.size();
-    const auto result = std::from_chars(value.data(), end, parsed);
+    const auto result = parseDouble(value.data(), end, parsed);
     if (result.ec != std::errc{} || result.ptr != end || !(parsed > 0.0) || parsed > Pad::MaxMouseSensitivity) {
         throw std::runtime_error("mouse sensitivity must be a number greater than 0 and at most 10");
     }
@@ -205,7 +226,7 @@ std::string formatNumber(double value) {
 double parseNumber(std::string_view value, std::string_view name, double minimum, double maximum) {
     double parsed = 0.0;
     const auto end = value.data() + value.size();
-    const auto result = std::from_chars(value.data(), end, parsed);
+    const auto result = parseDouble(value.data(), end, parsed);
     if (value.empty() || result.ec != std::errc{} || result.ptr != end || !std::isfinite(parsed) || parsed < minimum || parsed > maximum) {
         throw std::runtime_error(std::string(name) + " must be a number from " + formatNumber(minimum) + " to " + formatNumber(maximum));
     }
