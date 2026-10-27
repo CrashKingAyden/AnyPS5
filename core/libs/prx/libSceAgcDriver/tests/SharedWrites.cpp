@@ -18,6 +18,12 @@
 #include <sys/resource.h>
 #endif
 
+#ifdef __APPLE__
+constexpr int ThreadUsage = RUSAGE_SELF;
+#elif !defined(_WIN32)
+constexpr int ThreadUsage = RUSAGE_THREAD;
+#endif
+
 namespace {
 using namespace AgcDriver::GuestMemory;
 void require(bool condition, const char* reason) { if (!condition) throw std::runtime_error(reason); }
@@ -59,7 +65,7 @@ void benchmark(bool labels = false, bool backing = true) {
         for (unsigned pass = 0; pass < 10; ++pass) {
 #ifndef _WIN32
             rusage before{}, after{};
-            getrusage(RUSAGE_THREAD, &before);
+            getrusage(ThreadUsage, &before);
 #endif
             const auto start = std::chrono::steady_clock::now();
             for (unsigned i = 0; i < 256; ++i) {
@@ -72,7 +78,7 @@ void benchmark(bool labels = false, bool backing = true) {
             }
             const auto us = std::chrono::duration<double, std::micro>(std::chrono::steady_clock::now() - start).count() / 256;
 #ifndef _WIN32
-            getrusage(RUSAGE_THREAD, &after);
+            getrusage(ThreadUsage, &after);
             if (pass != 0) faults += after.ru_minflt - before.ru_minflt;
 #endif
             if (pass != 0) times.push_back(us);

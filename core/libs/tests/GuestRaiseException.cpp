@@ -82,7 +82,7 @@ struct SpinState {
 
 static_assert(offsetof(SpinState, r12) == 8 && offsetof(SpinState, xmm8) == 16 && offsetof(SpinState, mxcsr) == 24);
 
-extern "C" void APS5_VABI RaiseTestSpinUntilR12(SpinState* state);
+extern "C" void APS5_VABI RaiseTestSpinUntilR12(SpinState* state) __asm__("RaiseTestSpinUntilR12");
 asm(".text\n"
     ".globl RaiseTestSpinUntilR12\n"
     "RaiseTestSpinUntilR12:\n"
