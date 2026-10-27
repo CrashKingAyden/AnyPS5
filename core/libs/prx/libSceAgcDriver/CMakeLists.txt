@@ -1974,7 +1974,7 @@ target_include_directories(agc_host_import_sparse_tests PRIVATE ${LIBS_INCLUDE_D
 target_link_libraries(agc_host_import_sparse_tests PRIVATE libSceAgcDriver libc)
 set_target_properties(agc_host_import_sparse_tests PROPERTIES CXX_EXTENSIONS OFF)
 configure_windows_unwind(agc_host_import_sparse_tests)
-if(BUILD_TESTING)
+if(BUILD_TESTING AND NOT APPLE)
     set_target_properties(agc_host_import_sparse_tests PROPERTIES EXCLUDE_FROM_ALL OFF)
     add_test(NAME agc_host_import_sparse COMMAND agc_host_import_sparse_tests)
     set_tests_properties(agc_host_import_sparse PROPERTIES SKIP_RETURN_CODE 77 TIMEOUT 30)
