@@ -900,8 +900,9 @@ void FromHost(const mcontext_t& host, GuestMcontext& m) {
     m.cs = g.__cs & 0xffffu;
     m.ss = 0;
     m.len = sizeof(GuestMcontext);
-    static_assert(sizeof(m.fpstate) <= sizeof(_STRUCT_X86_FLOAT_STATE64) - offsetof(_STRUCT_X86_FLOAT_STATE64, __fpu_fcw) && FxsaveRegisterBytes <= sizeof(m.fpstate));
-    std::memcpy(m.fpstate, &host->__fs.__fpu_fcw, sizeof(m.fpstate));
+    static_assert(FxsaveRegisterBytes <= sizeof(_STRUCT_X86_FLOAT_STATE64) - offsetof(_STRUCT_X86_FLOAT_STATE64, __fpu_fcw) && FxsaveRegisterBytes <= sizeof(m.fpstate));
+    std::memset(m.fpstate, 0, sizeof(m.fpstate));
+    std::memcpy(m.fpstate, &host->__fs.__fpu_fcw, FxsaveRegisterBytes);
 }
 
 void ToHost(const GuestMcontext& m, mcontext_t& host) {
