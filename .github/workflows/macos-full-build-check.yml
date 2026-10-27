@@ -6,7 +6,7 @@ on:
   workflow_dispatch:
 
 permissions:
-  contents: read
+  contents: write
 
 jobs:
   build:
@@ -76,6 +76,30 @@ jobs:
           body="${body//'%'/'%25'}"
           body="${body//$'\n'/'%0A'}"
           echo "::notice title=ctest::$body"
+      - name: Publish error reports to the ci-logs branch
+        if: always()
+        env:
+          GH_TOKEN: ${{ github.token }}
+        run: |
+          dir="$RUNNER_TEMP/report"
+          mkdir -p "$dir"
+          for log in configure.log build.log libs.log ctest.log; do
+            [ -f "$log" ] || continue
+            grep -E -B2 -A6 'error:|Undefined symbols|ld: |FAILED: |\(Failed\)|tests passed|tests failed' "$log" | sed 's|'"$GITHUB_WORKSPACE"'/||g' | head -20000 > "$dir/$log" || true
+          done
+          name="${GITHUB_REF_NAME//\//-}-${{ matrix.runner }}"
+          cd "$RUNNER_TEMP"
+          git clone --depth 1 --branch ci-logs "https://x-access-token:${GH_TOKEN}@github.com/${GITHUB_REPOSITORY}" logs 2>/dev/null || { git init -q logs && git -C logs checkout -q -b ci-logs && git -C logs remote add origin "https://x-access-token:${GH_TOKEN}@github.com/${GITHUB_REPOSITORY}"; }
+          rm -rf "logs/$name" && mkdir -p "logs/$name" && cp "$dir"/* "logs/$name/" 2>/dev/null || true
+          echo "${GITHUB_SHA}" > "logs/$name/commit"
+          cd logs
+          git add -A
+          git -c user.name=ci -c user.email=ci@localhost commit -qm "logs for $name at ${GITHUB_SHA}" || exit 0
+          for attempt in 1 2 3 4 5; do
+            git push -q origin ci-logs && exit 0
+            git pull -q --rebase origin ci-logs || true
+          done
+          exit 1
       - uses: actions/upload-artifact@v7
         if: always()
         with:
