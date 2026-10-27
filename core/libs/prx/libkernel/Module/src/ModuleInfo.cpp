@@ -23,7 +23,13 @@
 #include <filesystem>
 #else
 #include <dlfcn.h>
+#ifdef __APPLE__
+#include "prx/libc/include/specifics/linux/ElfTypes.hpp"
+#include <mach-o/dyld.h>
+#include <mach-o/loader.h>
+#else
 #include <link.h>
+#endif
 #include <mutex>
 #include <unistd.h>
 #include <unordered_map>
@@ -65,6 +71,7 @@ void SetName(TInfo& info, const std::string& name) {
 struct GuestImage {
     const void* native;
     std::uintptr_t address;
+    std::string path;
 };
 
 std::uint64_t PageSpan(std::uint64_t address, std::uint64_t size) {
@@ -111,10 +118,17 @@ EhFrame::Tables FrameTables(const dl_phdr_info& image, std::uintptr_t header) {
 std::string ImageName(const dl_phdr_info& image) {
     std::string path = image.dlpi_name ? image.dlpi_name : "";
     if (path.empty()) {
+#ifdef __APPLE__
+        char executable[4096];
+        std::uint32_t capacity = sizeof(executable);
+        if (_NSGetExecutablePath(executable, &capacity) != 0) throw std::runtime_error("sceKernelGetModuleInfoFromAddr: cannot resolve the executable path");
+        path = executable;
+#else
         char executable[4096];
         const auto length = ::readlink("/proc/self/exe", executable, sizeof(executable) - 1);
         if (length < 0) throw std::runtime_error("sceKernelGetModuleInfoFromAddr: cannot resolve the executable path");
         path.assign(executable, static_cast<std::size_t>(length));
+#endif
     }
     return ModuleName(path.substr(path.find_last_of('/') + 1));
 }
@@ -175,16 +189,37 @@ int CollectGuestImage(dl_phdr_info* image, std::size_t, void* data) {
     return 0;
 }
 
+#ifdef __APPLE__
+bool NativeImage(std::uintptr_t address, GuestImage& image) {
+    Dl_info symbol{};
+    if (!dladdr(reinterpret_cast<const void*>(address), &symbol) || symbol.dli_fbase == nullptr) return false;
+    const bool executable = static_cast<const mach_header_64*>(symbol.dli_fbase)->filetype == MH_EXECUTE;
+    void* handle = ::dlopen(executable ? nullptr : symbol.dli_fname, RTLD_LAZY | RTLD_NOLOAD);
+    if (handle == nullptr) return false;
+    ::dlclose(handle);
+    image.native = handle;
+    image.path = executable || symbol.dli_fname == nullptr ? "" : symbol.dli_fname;
+    return true;
+}
+#endif
+
 std::vector<GuestImage> GuestImages() {
     std::vector<std::uintptr_t> addresses;
     dl_iterate_phdr(CollectGuestImage, &addresses);
     std::vector<GuestImage> images;
     for (const auto address : addresses) {
+#ifdef __APPLE__
+        GuestImage image{nullptr, address, {}};
+        if (!NativeImage(address, image))
+            throw std::runtime_error("sceKernelGetModuleList: no loader handle for a loaded image");
+        images.push_back(std::move(image));
+#else
         Dl_info symbol{};
         link_map* native = nullptr;
         if (!dladdr1(reinterpret_cast<const void*>(address), &symbol, reinterpret_cast<void**>(&native), RTLD_DL_LINKMAP) || !native)
             throw std::runtime_error("sceKernelGetModuleList: no link map for a loaded image");
-        images.push_back({native, address});
+        images.push_back({native, address, {}});
+#endif
     }
     return images;
 }
@@ -208,8 +243,12 @@ std::uint64_t GuestSegmentBytes() {
 }
 
 bool SystemImage(const GuestImage& image) {
+#ifdef __APPLE__
+    const std::string_view path = image.path;
+#else
     const auto* name = static_cast<const link_map*>(image.native)->l_name;
     const std::string_view path = name ? name : "";
+#endif
     return !path.empty() && !path.ends_with(GuestModuleSuffix);
 }
 #else
@@ -408,6 +447,13 @@ int APS5_VABI sceKernelGetModuleInfoFromAddr(std::uint64_t address, int flags, M
     const bool found = Fill(static_cast<std::uintptr_t>(address), result) &&
         VirtualQuery(reinterpret_cast<LPCVOID>(address), &memory, sizeof(memory)) == sizeof(memory);
     const GuestImage image{nullptr, found ? reinterpret_cast<std::uintptr_t>(memory.AllocationBase) : 0};
+#elif defined(__APPLE__)
+    GuestImage image{nullptr, 0, {}};
+    ImageSearch<ModuleInfoEx> search{static_cast<std::uintptr_t>(address), &result, false};
+    if (NativeImage(static_cast<std::uintptr_t>(address), image))
+        dl_iterate_phdr(FindImage<ModuleInfoEx>, &search);
+    const bool found = search.found;
+    if (found) result.id = ModuleIdForImage_nid_no_patch(image.native);
 #else
     Dl_info symbol{};
     link_map* native = nullptr;
@@ -416,7 +462,7 @@ int APS5_VABI sceKernelGetModuleInfoFromAddr(std::uint64_t address, int flags, M
         dl_iterate_phdr(FindImage<ModuleInfoEx>, &search);
     const bool found = search.found;
     if (found) result.id = ModuleIdForImage_nid_no_patch(native);
-    const GuestImage image{native, 0};
+    const GuestImage image{native, 0, {}};
 #endif
     if (!found || (flags == 2 && SystemImage(image))) {
         *info = {};
