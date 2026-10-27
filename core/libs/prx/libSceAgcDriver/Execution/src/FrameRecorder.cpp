@@ -25,6 +25,9 @@
 #else
 #include <unistd.h>
 #endif
+#ifdef __APPLE__
+extern char** environ;
+#endif
 
 namespace AgcDriver {
 namespace {

@@ -21,8 +21,10 @@
 #include <windows.h>
 #else
 #include <fcntl.h>
+#ifdef __linux__
 #include <linux/udmabuf.h>
 #include <sys/ioctl.h>
+#endif
 #include <sys/mman.h>
 #include <sys/stat.h>
 #include <unistd.h>
@@ -572,6 +574,9 @@ const char* createHostPointerImport(const Context& context, HostImport& entry, V
 
 #ifndef _WIN32
 int udmabufDevice() {
+#ifndef __linux__
+    return -1;
+#else
     static const int device = [] {
         const int result = open("/dev/udmabuf", O_RDWR | O_CLOEXEC);
         if (result < 0) {
@@ -582,16 +587,30 @@ int udmabufDevice() {
         return result;
     }();
     return device;
+#endif
 }
 
-const char* createDmaBufImport(const Context& context, HostImport& entry, int file, std::uint64_t offset, VkResult& failure) {
+int createUdmabuf(int device, int file, std::uint64_t offset, std::uint64_t bytes) {
+#ifdef __linux__
     udmabuf_create request{};
     request.memfd = static_cast<std::uint32_t>(file);
     request.flags = UDMABUF_FLAGS_CLOEXEC;
     request.offset = offset;
-    request.size = entry.bytes;
+    request.size = bytes;
+    return ioctl(device, UDMABUF_CREATE, &request);
+#else
+    static_cast<void>(device);
+    static_cast<void>(file);
+    static_cast<void>(offset);
+    static_cast<void>(bytes);
+    errno = ENOTSUP;
+    return -1;
+#endif
+}
+
+const char* createDmaBufImport(const Context& context, HostImport& entry, int file, std::uint64_t offset, VkResult& failure) {
     const int device = udmabufDevice();
-    const int buffer = device < 0 ? -1 : ioctl(device, UDMABUF_CREATE, &request);
+    const int buffer = device < 0 ? -1 : createUdmabuf(device, file, offset, entry.bytes);
     close(file);
     if (buffer < 0) {
         failure = VK_ERROR_INVALID_EXTERNAL_HANDLE;
@@ -664,13 +683,8 @@ std::shared_ptr<ImportChunk> importChunk(const Context& context, int file, std::
         step = "a chunk past the end of the shared backing";
         return nullptr;
     }
-    udmabuf_create request{};
-    request.memfd = static_cast<std::uint32_t>(file);
-    request.flags = UDMABUF_FLAGS_CLOEXEC;
-    request.offset = index * ImportChunkBytes;
-    request.size = ImportChunkBytes;
     const int device = udmabufDevice();
-    const int buffer = device < 0 ? -1 : ioctl(device, UDMABUF_CREATE, &request);
+    const int buffer = device < 0 ? -1 : createUdmabuf(device, file, index * ImportChunkBytes, ImportChunkBytes);
     if (buffer < 0) {
         failure = VK_ERROR_INVALID_EXTERNAL_HANDLE;
         step = device < 0 ? "open /dev/udmabuf" : "UDMABUF_CREATE";
