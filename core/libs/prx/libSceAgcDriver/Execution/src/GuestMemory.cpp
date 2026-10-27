@@ -52,6 +52,10 @@
 #include <sys/uio.h>
 #include <unistd.h>
 #include "prx/libc/include/specifics/linux/HostMapping.hpp"
+#ifdef __APPLE__
+#include <mach/mach.h>
+#include <mach/mach_vm.h>
+#endif
 #endif
 
 namespace AgcDriver::GuestMemory {
@@ -662,6 +666,37 @@ bool describePages(std::uintptr_t address, std::size_t bytes, Emit&& emit) {
         const bool writable = readable && writableProtection(protection);
         if ((memory.Protect & PAGE_GUARD) == 0) pages.record(base, regionEnd, readable, writable, generation, access);
         const auto next = std::min(end, regionEnd);
+        if (!emit(PageRun{cursor, next, readable, writable})) return true;
+        cursor = next;
+#elif defined(__APPLE__)
+        const auto generation = GuestAllocations::GuestAllocationsGeneration_nid_postfix();
+        const auto access = pages.accessSerial.load(std::memory_order_acquire);
+        const auto recordRun = [&](std::uintptr_t next, bool readable, bool writable) {
+            constexpr auto mask = static_cast<std::uintptr_t>(PageBytes - 1);
+            pages.record(cursor & ~mask, (next + mask) & ~mask, readable, writable, generation, access);
+        };
+        mach_vm_address_t regionStart = cursor;
+        mach_vm_size_t regionBytes = 0;
+        vm_region_basic_info_data_64_t info{};
+        mach_msg_type_number_t count = VM_REGION_BASIC_INFO_COUNT_64;
+        mach_port_t object = MACH_PORT_NULL;
+        const kern_return_t status = mach_vm_region(mach_task_self(), &regionStart, &regionBytes, VM_REGION_BASIC_INFO_64, reinterpret_cast<vm_region_info_t>(&info), &count, &object);
+        if (status == KERN_INVALID_ADDRESS) {
+            static_cast<void>(emit(PageRun{cursor, end, false, false}));
+            return true;
+        }
+        if (status != KERN_SUCCESS || regionBytes == 0 || regionStart + regionBytes <= cursor) return false;
+        if (regionStart > cursor) {
+            const auto gapEnd = std::min<std::uintptr_t>(end, regionStart);
+            recordRun(gapEnd, false, false);
+            if (!emit(PageRun{cursor, gapEnd, false, false})) return true;
+            cursor = gapEnd;
+            continue;
+        }
+        const bool readable = (info.protection & VM_PROT_READ) != 0;
+        const bool writable = readable && (info.protection & VM_PROT_WRITE) != 0;
+        const auto next = std::min<std::uintptr_t>(end, regionStart + regionBytes);
+        recordRun(next, readable, writable);
         if (!emit(PageRun{cursor, next, readable, writable})) return true;
         cursor = next;
 #else
