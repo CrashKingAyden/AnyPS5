@@ -1,4 +1,4 @@
- 345/2467 Test  #345: libc_floating_point_contraction ...........................................................................***Failed    0.13 sec
+ 345/2467 Test  #345: libc_floating_point_contraction ...........................................................................***Failed    0.12 sec
 CMake Error at core/libs/tests/LibcFloatingPointContraction.cmake:11 (message):
   compiling the contraction probe failed: clang++: error: unsupported option
   '-mfma' for target 'arm64-apple-darwin24.6.0'
@@ -9,47 +9,47 @@ CMake Error at core/libs/tests/LibcFloatingPointContraction.cmake:11 (message):
           Start  346: guest_update_env
 --
           Start  471: application_heap_scripting
- 471/2467 Test  #471: application_heap_scripting ................................................................................Subprocess aborted***Exception:   0.10 sec
+ 471/2467 Test  #471: application_heap_scripting ................................................................................Subprocess aborted***Exception:   0.08 sec
 libc++abi: terminating due to uncaught exception of type std::runtime_error: application heap: unsupported executable format
 
           Start  472: application_heap_lazy
- 472/2467 Test  #472: application_heap_lazy .....................................................................................Subprocess aborted***Exception:   0.16 sec
+ 472/2467 Test  #472: application_heap_lazy .....................................................................................Subprocess aborted***Exception:   0.08 sec
 libc++abi: terminating due to uncaught exception of type std::runtime_error: application heap: unsupported executable format
 
           Start  473: guest_allocator_failures
- 473/2467 Test  #473: guest_allocator_failures ..................................................................................   Passed    0.28 sec
+ 473/2467 Test  #473: guest_allocator_failures ..................................................................................   Passed    0.21 sec
           Start  474: application_heap_stats
- 474/2467 Test  #474: application_heap_stats ....................................................................................   Passed    0.25 sec
+ 474/2467 Test  #474: application_heap_stats ....................................................................................   Passed    0.19 sec
           Start  475: application_heap_stats_default
 --
           Start  506: guest_shader_link
- 506/2467 Test  #506: guest_shader_link .........................................................................................Subprocess aborted***Exception:   0.32 sec
+ 506/2467 Test  #506: guest_shader_link .........................................................................................Subprocess aborted***Exception:   0.34 sec
 libc++abi: terminating due to uncaught exception of type std::runtime_error: the AGC driver memory was not mapped at its fixed address
 
           Start  507: agc_gs_oversubscription_tests
  507/2467 Test  #507: agc_gs_oversubscription_tests .............................................................................   Passed    0.30 sec
           Start  508: agc_gs_prim_payload_tests
- 508/2467 Test  #508: agc_gs_prim_payload_tests .................................................................................   Passed    0.28 sec
+ 508/2467 Test  #508: agc_gs_prim_payload_tests .................................................................................   Passed    0.24 sec
           Start  509: agc_dma_data_tests
 --
           Start  537: agc_driver_resolution_shutdown
- 537/2467 Test  #537: agc_driver_resolution_shutdown ............................................................................Subprocess aborted***Exception:   0.16 sec
+ 537/2467 Test  #537: agc_driver_resolution_shutdown ............................................................................Subprocess aborted***Exception:   0.10 sec
 libc++abi: terminating due to uncaught exception of type std::runtime_error: the AGC driver memory was not mapped at its fixed address
 
           Start  538: agc_guarded_memory_loads
- 538/2467 Test  #538: agc_guarded_memory_loads ..................................................................................   Passed    0.72 sec
+ 538/2467 Test  #538: agc_guarded_memory_loads ..................................................................................   Passed    0.56 sec
           Start  539: agc_lds_lock_budget
- 539/2467 Test  #539: agc_lds_lock_budget .......................................................................................   Passed    0.88 sec
+ 539/2467 Test  #539: agc_lds_lock_budget .......................................................................................   Passed    0.73 sec
           Start  540: agc_write_tracking
 --
           Start  578: agc_display_buffer_dcc
- 578/2467 Test  #578: agc_display_buffer_dcc ....................................................................................Subprocess aborted***Exception:   0.42 sec
-libc++abi: terminating due to uncaught exception of type std::runtime_error: AGC graphics: DCC metadata 0x7f8340008000 is not writable over the 0xc000 key bytes of its surface (0x8700 at one per 256 bytes): metadata smaller than the console's DCC extent is not modeled
+ 578/2467 Test  #578: agc_display_buffer_dcc ....................................................................................Subprocess aborted***Exception:   0.24 sec
+libc++abi: terminating due to uncaught exception of type std::runtime_error: AGC graphics: DCC metadata 0x7fee90008000 is not writable over the 0xc000 key bytes of its surface (0x8700 at one per 256 bytes): metadata smaller than the console's DCC extent is not modeled
 
           Start  579: agc_host_hdr
- 579/2467 Test  #579: agc_host_hdr ..............................................................................................   Passed    0.38 sec
+ 579/2467 Test  #579: agc_host_hdr ..............................................................................................   Passed    0.29 sec
           Start  580: agc_rect_list_position_invariant
- 580/2467 Test  #580: agc_rect_list_position_invariant ..........................................................................   Passed    0.35 sec
+ 580/2467 Test  #580: agc_rect_list_position_invariant ..........................................................................   Passed    0.28 sec
           Start  581: agc_recorder_device_selection
 --
 sparse buffer holes: writable shortened: AGC driver: cannot query guest memory
@@ -57,50 +57,50 @@ sparse buffer holes: writable committed: AGC driver: cannot query guest memory
 sparse buffer hole tests failed
 
           Start 1342: agc_copy_input_kept_bytes
-1342/2467 Test #1342: agc_copy_input_kept_bytes .................................................................................***Failed    0.17 sec
+1342/2467 Test #1342: agc_copy_input_kept_bytes .................................................................................***Failed    0.12 sec
 AGC driver: cannot query guest memory
 
           Start 1343: agc_depth_copy_kept_bytes
 --
           Start 1520: guest_rendering_wait
-1520/2467 Test #1520: guest_rendering_wait ......................................................................................Subprocess aborted***Exception:   0.46 sec
+1520/2467 Test #1520: guest_rendering_wait ......................................................................................Subprocess aborted***Exception:   0.28 sec
 libc++abi: terminating due to uncaught exception of type std::runtime_error: the AGC driver memory was not mapped at its fixed address
 
           Start 1521: shader_buffer_address
-1521/2467 Test #1521: shader_buffer_address .....................................................................................   Passed    0.52 sec
+1521/2467 Test #1521: shader_buffer_address .....................................................................................   Passed    0.42 sec
           Start 1522: ray_tracing_miss
-1522/2467 Test #1522: ray_tracing_miss ..........................................................................................   Passed    0.46 sec
+1522/2467 Test #1522: ray_tracing_miss ..........................................................................................   Passed    0.42 sec
           Start 1523: wave32_wide_subgroup
 --
           Start 2087: guest_process_arguments
-2087/2467 Test #2087: guest_process_arguments ...................................................................................Subprocess aborted***Exception:   0.29 sec
+2087/2467 Test #2087: guest_process_arguments ...................................................................................Subprocess aborted***Exception:   0.20 sec
 libc++abi: terminating due to uncaught exception of type std::runtime_error: Cannot read process arguments
 
           Start 2088: nid_patcher_symbol_versions
-2088/2467 Test #2088: nid_patcher_symbol_versions ...............................................................................   Passed    0.28 sec
+2088/2467 Test #2088: nid_patcher_symbol_versions ...............................................................................   Passed    0.14 sec
           Start 2089: guest_dynamic_loader
-2089/2467 Test #2089: guest_dynamic_loader ......................................................................................Subprocess aborted***Exception:   0.54 sec
+2089/2467 Test #2089: guest_dynamic_loader ......................................................................................Subprocess aborted***Exception:   0.33 sec
 [module] dlopen: cannot load build/core/libs/prx/libkernel/anyps5-missing-module-for-test.prx (dlopen(build/core/libs/prx/libkernel/anyps5-missing-module-for-test.prx, 0x0006): tried: 'build/core/libs/prx/libkernel/anyps5-missing-module-for-test.prx' (no such file), '/System/Volumes/Preboot/Cryptexes/OSbuild/core/libs/prx/libkernel/anyps5-missing-module-for-test.prx' (no such file), 'build/core/libs/prx/libkernel/anyps5-missing-module-for-test.prx' (no such file))
 --
-2217/2467 Test #2217: guest_kernel_app_archive_mmap .............................................................................Subprocess aborted***Exception:   0.10 sec
+2217/2467 Test #2217: guest_kernel_app_archive_mmap .............................................................................Subprocess aborted***Exception:   0.08 sec
 [src/Open.cpp:303 sceKernelOpen] path=/app0/Data/Small.txt flags=0x0 nativeFlags=0x0 mode=00
 libc++abi: terminating due to uncaught exception of type std::runtime_error: mmap on a file read from app0.zar, fd=4 not implemented
 
           Start 2218: guest_socket_on_non_socket
-2218/2467 Test #2218: guest_socket_on_non_socket ................................................................................   Passed    0.28 sec
+2218/2467 Test #2218: guest_socket_on_non_socket ................................................................................   Passed    0.21 sec
           Start 2219: guest_dup
-2219/2467 Test #2219: guest_dup .................................................................................................   Passed    0.25 sec
+2219/2467 Test #2219: guest_dup .................................................................................................   Passed    0.20 sec
           Start 2220: guest_kqueue
 --
-2467/2467 Test #2467: macos_guest_weak_imports ..................................................................................   Passed    2.68 sec
+2467/2467 Test #2467: macos_guest_weak_imports ..................................................................................   Passed    2.08 sec
 
-89% tests passed, 271 tests failed out of 2467
+89% tests passed, 272 tests failed out of 2467
 
 Label Time Summary:
-relinker                 =   5.53 sec*proc (3 tests)
-tls_function_coverage    =  30.34 sec*proc (34 tests)
+relinker                 =   4.21 sec*proc (3 tests)
+tls_function_coverage    =  20.65 sec*proc (34 tests)
 
-Total Test time (real) = 1746.58 sec
+Total Test time (real) = 1351.01 sec
 --
 The following tests FAILED:
 	178 - guest_kernel_sys_sdk_version (Subprocess aborted)
@@ -238,6 +238,7 @@ The following tests FAILED:
 	1510 - agc_driver_sample_order_planning (Failed)
 	1520 - guest_rendering_wait (Subprocess aborted)
 	1571 - guest_appcontent (Subprocess aborted)
+	1624 - guest_avplayer (Failed)
 	1653 - guest_convert_keycode (Subprocess aborted)
 	1654 - guest_convert_keycode_title_oversized-id (Failed)
 	1655 - guest_convert_keycode_title_oversized-title (Failed)
@@ -280,16 +281,16 @@ The following tests FAILED:
 	2093 - guest_filesystem (Subprocess aborted)
 	2110 - guest_kernel_is_stack (Subprocess aborted)
 --
+	2196 - guest_system_configuration (Subprocess aborted)
 	2208 - guest_poll (Subprocess aborted)
-	2209 - guest_select_wait (Subprocess aborted)
 	2212 - guest_socket_port_zero (Failed)
 	2216 - guest_kernel_app_archive_plain (Failed)
 	2217 - guest_kernel_app_archive_mmap (Subprocess aborted)
+	2220 - guest_kqueue (Subprocess aborted)
 	2227 - guest_credentials (Subprocess aborted)
 	2229 - guest_memory (Subprocess aborted)
 	2240 - guest_mlock (Subprocess aborted)
 	2242 - guest_directory_entries (Subprocess aborted)
-	2244 - guest_file_vector (Subprocess aborted)
 --
 	2256 - guest_coredump_attach (Subprocess aborted)
 	2257 - guest_coredump_user_data (Subprocess aborted)
