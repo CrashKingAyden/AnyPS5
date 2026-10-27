@@ -18,6 +18,10 @@
 #include <string_view>
 #include "SceTypes.hpp"
 #include "prx/libc/include/General.hpp"
+#ifdef __APPLE__
+#include <cstdlib>
+#include <xlocale.h>
+#endif
 
 namespace {
 
@@ -457,6 +461,11 @@ private:
                 }
             }
         }
+#ifdef __APPLE__
+        char* end = nullptr;
+        const double real = strtod_l(text.c_str(), &end, LC_C_LOCALE);
+        const bool converted = end == text.c_str() + text.size();
+#else
         double real = 0;
         const auto parsed = std::from_chars(text.data(), text.data() + text.size(), real);
         bool converted = parsed.ec == std::errc{} && parsed.ptr == text.data() + text.size();
@@ -466,6 +475,7 @@ private:
             stream >> real;
             converted = !stream.fail() && stream.eof();
         }
+#endif
         if (!converted || !std::isfinite(real)) throw std::runtime_error("sce::Json::Parser::parse: number " + text + " overflows a double; the console's behaviour is unverified");
         out.type = TypeReal;
         out.real = real;
