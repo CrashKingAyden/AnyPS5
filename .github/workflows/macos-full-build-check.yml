@@ -1,0 +1,67 @@
+name: macOS full build check
+
+on:
+  push:
+    branches: ['claude/macos-full-build-check']
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+jobs:
+  build:
+    name: Full build (${{ matrix.runner }})
+    strategy:
+      fail-fast: false
+      matrix:
+        runner: [macos-15, macos-15-intel]
+    runs-on: ${{ matrix.runner }}
+    timeout-minutes: 180
+    steps:
+      - uses: actions/checkout@v7
+        with:
+          submodules: recursive
+          persist-credentials: false
+      - name: Report host
+        run: |
+          uname -m
+          sw_vers
+          sysctl -n machdep.cpu.brand_string
+          clang --version
+          cmake --version
+          /usr/bin/arch -x86_64 /usr/bin/true && echo "x86-64 execution available" || echo "no x86-64 execution"
+      - run: brew install ninja
+      - name: Configure
+        run: cmake -S . -B build -G Ninja -DCMAKE_BUILD_TYPE=Release -DBUILD_TESTING=ON 2>&1 | tee configure.log
+      - name: Build everything, keep going past errors
+        id: build
+        continue-on-error: true
+        run: |
+          set -o pipefail
+          cmake --build build -- -k 0 2>&1 | tee build.log
+      - name: Build patched libraries
+        id: libs
+        continue-on-error: true
+        run: |
+          set -o pipefail
+          cmake --build build --target libs -- -k 0 2>&1 | tee libs.log
+          ls -1 build/core/libs/libs/*.prx | wc -l
+      - name: Summarize errors
+        if: always()
+        run: |
+          for log in build.log libs.log; do
+            [ -f "$log" ] || continue
+            echo "== $log: failed targets"
+            grep -E '^FAILED: ' "$log" | sort -u | head -100 || true
+            echo "== $log: first distinct errors"
+            grep -E 'error:|Undefined symbols|ld: ' "$log" | sort -u | head -60 || true
+          done
+      - name: Run tests
+        if: steps.build.outcome == 'success'
+        continue-on-error: true
+        run: ctest --test-dir build --output-on-failure --timeout 120 2>&1 | tee ctest.log
+      - uses: actions/upload-artifact@v7
+        if: always()
+        with:
+          name: logs-${{ matrix.runner }}
+          path: '*.log'
