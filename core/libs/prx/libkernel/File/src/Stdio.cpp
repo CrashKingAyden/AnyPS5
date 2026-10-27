@@ -1211,6 +1211,8 @@ int APS5_VABI sceKernelFdatasync(int fd) {
     File::RefuseArchivedFile(fd, "fdatasync");
 #ifdef _WIN32
     if (NativeSync(fd) != 0) return SceErrorFromErrno(errno);
+#elif defined(__APPLE__)
+    if (::fsync(fd) != 0) return SceErrorFromErrno(errno);
 #else
     if (::fdatasync(fd) != 0) return SceErrorFromErrno(errno);
 #endif
@@ -1264,7 +1266,13 @@ static bool InsideApp0(int fd) {
     return inside;
 }
 
-static unsigned char GuestEntryType(int fd, const struct dirent64& entry, bool followLinks) {
+#ifdef __APPLE__
+using HostDirent = struct dirent;
+#else
+using HostDirent = struct dirent64;
+#endif
+
+static unsigned char GuestEntryType(int fd, const HostDirent& entry, bool followLinks) {
     if (entry.d_type != DT_LNK && entry.d_type != DT_UNKNOWN) return entry.d_type;
     if (entry.d_type == DT_LNK && !followLinks) return DT_LNK;
     const int savedErrno = errno;
@@ -1278,11 +1286,32 @@ static unsigned char GuestEntryType(int fd, const struct dirent64& entry, bool f
     return entry.d_type;
 }
 
+static std::optional<int> AppendGuestEntry(char* buf, int nbytes, std::size_t& written, int fd, const HostDirent& entry, bool followLinks) {
+    constexpr std::size_t GuestHeaderBytes = 8;
+    constexpr std::size_t GuestMaxName = 255;
+    const auto nameLength = std::strlen(entry.d_name);
+    const auto record = (GuestHeaderBytes + nameLength + 1 + 3) & ~std::size_t{3};
+    if (nameLength > GuestMaxName || written + record > static_cast<std::size_t>(nbytes)) {
+        if (written != 0) return static_cast<int>(written);
+        return nameLength > GuestMaxName ? static_cast<int>(0x80020000u | GUEST_ENAMETOOLONG) : SceErrorFromErrno(GUEST_EINVAL);
+    }
+    char* out = buf + written;
+    std::memset(out, 0, record);
+    const auto fileNumber = static_cast<std::uint32_t>(entry.d_ino);
+    const auto recordLength = static_cast<std::uint16_t>(record);
+    const auto nameBytes = static_cast<std::uint8_t>(nameLength);
+    std::memcpy(out, &fileNumber, sizeof(fileNumber));
+    std::memcpy(out + 4, &recordLength, sizeof(recordLength));
+    out[6] = static_cast<char>(GuestEntryType(fd, entry, followLinks));
+    out[7] = static_cast<char>(nameBytes);
+    std::memcpy(out + GuestHeaderBytes, entry.d_name, nameLength);
+    written += record;
+    return std::nullopt;
+}
+
 int APS5_VABI sceKernelGetdirentries(int fd, char* buf, int nbytes, int64_t* basep) {
     if (GuestSockets::IsOpen(fd)) return SceErrorFromErrno(GUEST_EINVAL);
     File::RefuseArchivedFile(fd, "getdirentries");
-    constexpr std::size_t GuestHeaderBytes = 8;
-    constexpr std::size_t GuestMaxName = 255;
     if (buf == nullptr) return SceErrorFromErrno(GUEST_EFAULT);
     if (nbytes <= 0) return SceErrorFromErrno(GUEST_EINVAL);
     const GuestArena::HostWrite destination(buf, static_cast<std::size_t>(nbytes));
@@ -1297,6 +1326,29 @@ int APS5_VABI sceKernelGetdirentries(int fd, char* buf, int nbytes, int64_t* bas
     const off_t base = ::lseek(fd, 0, SEEK_CUR);
     if (base < 0) return SceErrorFromErrno(errno);
     if (basep != nullptr) *basep = static_cast<int64_t>(base);
+#ifdef __APPLE__
+    const int listing = ::openat(fd, ".", O_RDONLY | O_DIRECTORY | O_CLOEXEC);
+    if (listing < 0) return SceErrorFromErrno(errno);
+    const std::unique_ptr<DIR, int (*)(DIR*)> stream(::fdopendir(listing), ::closedir);
+    if (!stream) {
+        const int error = errno;
+        ::close(listing);
+        return SceErrorFromErrno(error);
+    }
+    std::size_t written = 0;
+    off_t index = 0;
+    const bool followLinks = InsideApp0(fd);
+    for (errno = 0; const auto* entry = ::readdir(stream.get()); errno = 0) {
+        if (index++ < base) continue;
+        if (const auto stop = AppendGuestEntry(buf, nbytes, written, fd, *entry, followLinks)) {
+            if (::lseek(fd, index - 1, SEEK_SET) < 0) return SceErrorFromErrno(errno);
+            return *stop;
+        }
+    }
+    if (errno != 0) return SceErrorFromErrno(errno);
+    if (::lseek(fd, std::max(index, base), SEEK_SET) < 0) return SceErrorFromErrno(errno);
+    return static_cast<int>(written);
+#else
     std::vector<char> host(static_cast<std::size_t>(nbytes) < 4096 ? 4096 : static_cast<std::size_t>(nbytes));
     const auto read = ::syscall(SYS_getdents64, fd, host.data(), host.size());
     if (read < 0) return SceErrorFromErrno(errno);
@@ -1304,30 +1356,17 @@ int APS5_VABI sceKernelGetdirentries(int fd, char* buf, int nbytes, int64_t* bas
     off_t resume = base;
     const bool followLinks = InsideApp0(fd);
     for (long offset = 0; offset < read;) {
-        const auto* entry = reinterpret_cast<const struct dirent64*>(host.data() + offset);
-        const auto nameLength = std::strlen(entry->d_name);
-        const auto record = (GuestHeaderBytes + nameLength + 1 + 3) & ~std::size_t{3};
-        if (nameLength > GuestMaxName || written + record > static_cast<std::size_t>(nbytes)) {
+        const auto* entry = reinterpret_cast<const HostDirent*>(host.data() + offset);
+        if (const auto stop = AppendGuestEntry(buf, nbytes, written, fd, *entry, followLinks)) {
             if (::lseek(fd, resume, SEEK_SET) < 0) return SceErrorFromErrno(errno);
-            if (written != 0) return static_cast<int>(written);
-            return nameLength > GuestMaxName ? static_cast<int>(0x80020000u | GUEST_ENAMETOOLONG) : SceErrorFromErrno(GUEST_EINVAL);
+            return *stop;
         }
-        char* out = buf + written;
-        std::memset(out, 0, record);
-        const auto fileNumber = static_cast<std::uint32_t>(entry->d_ino);
-        const auto recordLength = static_cast<std::uint16_t>(record);
-        const auto nameBytes = static_cast<std::uint8_t>(nameLength);
-        std::memcpy(out, &fileNumber, sizeof(fileNumber));
-        std::memcpy(out + 4, &recordLength, sizeof(recordLength));
-        out[6] = static_cast<char>(GuestEntryType(fd, *entry, followLinks));
-        out[7] = static_cast<char>(nameBytes);
-        std::memcpy(out + GuestHeaderBytes, entry->d_name, nameLength);
-        written += record;
         resume = entry->d_off;
         offset += entry->d_reclen;
     }
     if (::lseek(fd, resume, SEEK_SET) < 0) return SceErrorFromErrno(errno);
     return static_cast<int>(written);
+#endif
 }
 
 int APS5_VABI sceKernelGetdents(int fd, char* buf, int nbytes) {
