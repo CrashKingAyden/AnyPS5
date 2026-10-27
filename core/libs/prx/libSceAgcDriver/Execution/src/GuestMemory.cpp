@@ -43,7 +43,9 @@
 #include <cstdint>
 #include <fcntl.h>
 #include <fstream>
+#ifdef __linux__
 #include <link.h>
+#endif
 #include <pthread.h>
 #include <sstream>
 #include <sys/ioctl.h>
