@@ -24,7 +24,12 @@
 #include <windows.h>
 #else
 #include <dlfcn.h>
+#ifdef __APPLE__
+#include "prx/libc/include/specifics/linux/ElfTypes.hpp"
+#include <mach-o/loader.h>
+#else
 #include <link.h>
+#endif
 #ifdef __linux__
 #include <unistd.h>
 #endif
@@ -93,7 +98,38 @@ void* Symbol(Module& module, const char* name) {
     return ::dlsym(module.native, name);
 #endif
 }
-#ifndef _WIN32
+#ifdef __APPLE__
+bool FromGuestModule(void* address) {
+    Dl_info info{};
+    if (address == nullptr || !::dladdr(address, &info) || info.dli_fname == nullptr || info.dli_fbase == nullptr) return false;
+    if (static_cast<const mach_header_64*>(info.dli_fbase)->filetype == MH_EXECUTE) return true;
+    const std::string path(info.dli_fname);
+    return path.ends_with(".prx");
+}
+
+const void* GuestImageBase(void* native) {
+    struct Search {
+        void* native;
+        const void* base;
+    } search{native, nullptr};
+    dl_iterate_phdr([](dl_phdr_info* image, std::size_t, void* data) {
+        auto& search = *static_cast<Search*>(data);
+        if (image->dlpi_name == nullptr || *image->dlpi_name == 0) return 0;
+        void* handle = ::dlopen(image->dlpi_name, RTLD_LAZY | RTLD_NOLOAD);
+        if (handle == nullptr) return 0;
+        ::dlclose(handle);
+        if (handle != search.native) return 0;
+        search.base = reinterpret_cast<const void*>(image->dlpi_addr);
+        return 1;
+    }, &search);
+    return search.base;
+}
+
+void* DefaultScopeSymbol(const char* symbolName) {
+    auto* result = ::dlsym(RTLD_DEFAULT, symbolName);
+    return FromGuestModule(result) ? result : nullptr;
+}
+#elif !defined(_WIN32)
 const link_map* MainProgramMap() {
     static const link_map* const map = [] {
         void* handle = ::dlopen(nullptr, RTLD_LAZY);
@@ -355,6 +391,8 @@ int APS5_VABI dlclose_nid_postfix(void* handle) {
         GuestAllocations::Mutation mutation;
 #ifdef _WIN32
         mutation.UnregisterImage(module->native);
+#elif defined(__APPLE__)
+        if (const auto* base = GuestImageBase(module->native)) mutation.UnregisterImage(base);
 #else
         mutation.UnregisterImage(reinterpret_cast<const void*>(static_cast<link_map*>(module->native)->l_addr));
 #endif
