@@ -65,6 +65,9 @@ static constexpr std::size_t THREAD_NAME_CAPACITY = 32;
 #include <process.h>
 #include <immintrin.h>
 #endif
+#ifdef __APPLE__
+#include <mach/mach.h>
+#endif
 
 struct ThreadArgs {
     PthreadEntry entry;
@@ -309,6 +312,14 @@ static bool HostStackLimits(std::uintptr_t* low, std::uintptr_t* high) {
     static thread_local std::uintptr_t stackLow = 0;
     static thread_local std::uintptr_t stackHigh = 0;
     if (stackHigh == 0) {
+#ifdef __APPLE__
+        const auto top = reinterpret_cast<std::uintptr_t>(pthread_get_stackaddr_np(pthread_self()));
+        const std::size_t size = pthread_get_stacksize_np(pthread_self());
+        if (top == 0 || size == 0 || size > top)
+            return false;
+        stackLow = top - size;
+        stackHigh = top;
+#else
         pthread_attr_t attr;
         if (pthread_getattr_np(pthread_self(), &attr) != 0)
             return false;
@@ -320,6 +331,7 @@ static bool HostStackLimits(std::uintptr_t* low, std::uintptr_t* high) {
             return false;
         stackLow = reinterpret_cast<std::uintptr_t>(address);
         stackHigh = stackLow + size;
+#endif
     }
     *low = stackLow;
     *high = stackHigh;
@@ -510,6 +522,11 @@ PthreadPrivate::~PthreadPrivate() {
 static void BindHostCpuClock(PthreadPrivate* self) {
 #ifdef _WIN32
     (void)self;
+#elif defined(__APPLE__)
+    auto& registry = CpuClocks();
+    std::lock_guard lock(registry.lock);
+    self->hostMachThread = pthread_mach_thread_np(pthread_self());
+    self->hostCpuClockBound = true;
 #else
     clockid_t clock{};
     const int error = pthread_getcpuclockid(pthread_self(), &clock);
@@ -652,10 +669,22 @@ bool GuestThreadCpuNanos(int cpuClockThread, std::uint64_t* nanos) {
         *nanos = 0;
         return true;
     }
+#ifdef __APPLE__
+    thread_basic_info_data_t info{};
+    mach_msg_type_number_t count = THREAD_BASIC_INFO_COUNT;
+    const kern_return_t result = thread_info(thread->hostMachThread, THREAD_BASIC_INFO, reinterpret_cast<thread_info_t>(&info), &count);
+    if (result != KERN_SUCCESS)
+        throw std::runtime_error("Querying guest thread CPU time: thread_info failed with " + std::to_string(result));
+    const auto toNanos = [](const time_value_t& time) {
+        return static_cast<std::uint64_t>(time.seconds) * 1000000000ULL + static_cast<std::uint64_t>(time.microseconds) * 1000ULL;
+    };
+    *nanos = toNanos(info.user_time) + toNanos(info.system_time);
+#else
     struct timespec time{};
     if (clock_gettime(thread->hostCpuClock, &time) != 0)
         throw std::system_error(errno, std::generic_category(), "Querying guest thread CPU time");
     *nanos = static_cast<std::uint64_t>(time.tv_sec) * 1000000000ULL + static_cast<std::uint64_t>(time.tv_nsec);
+#endif
 #endif
     return true;
 }

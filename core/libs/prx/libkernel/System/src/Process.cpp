@@ -899,6 +899,8 @@ int APS5_VABI sceKernelGetCurrentCpu(void) {
             throw std::system_error(GetLastError(), std::system_category(), "Reading processor group size");
         index += count;
     }
+#elif defined(__APPLE__)
+    const unsigned index = 0;
 #else
     const int cpu = ::sched_getcpu();
     if (cpu < 0)
@@ -1066,8 +1068,31 @@ int APS5_VABI getrusage_nid_postfix(int who, GuestResourceUsage* usage) {
     result.ru_stime.tv_sec = static_cast<std::int64_t>(kernelMicros / 1000000ULL);
     result.ru_stime.tv_usec = static_cast<std::int64_t>(kernelMicros % 1000000ULL);
 #else
+#ifdef __APPLE__
+    if (who == 1) {
+        thread_basic_info_data_t info{};
+        mach_msg_type_number_t count = THREAD_BASIC_INFO_COUNT;
+        const mach_port_t thread = mach_thread_self();
+        const kern_return_t status = thread_info(thread, THREAD_BASIC_INFO, reinterpret_cast<thread_info_t>(&info), &count);
+        mach_port_deallocate(mach_task_self(), thread);
+        if (status != KERN_SUCCESS)
+            throw std::runtime_error("getrusage: thread_info failed with " + std::to_string(status));
+        result.ru_utime.tv_sec = static_cast<std::int64_t>(info.user_time.seconds);
+        result.ru_utime.tv_usec = static_cast<std::int64_t>(info.user_time.microseconds);
+        result.ru_stime.tv_sec = static_cast<std::int64_t>(info.system_time.seconds);
+        result.ru_stime.tv_usec = static_cast<std::int64_t>(info.system_time.microseconds);
+        if (!WriteGuest(usage, &result, sizeof(result))) {
+            *__error_nid_postfix() = guestFault;
+            return -1;
+        }
+        return 0;
+    }
+    struct rusage native{};
+    if (::getrusage(RUSAGE_SELF, &native) != 0)
+#else
     struct rusage native{};
     if (::getrusage(who == 0 ? RUSAGE_SELF : RUSAGE_THREAD, &native) != 0)
+#endif
         throw std::system_error(errno, std::generic_category(), "getrusage: getrusage failed");
     result.ru_utime.tv_sec = static_cast<std::int64_t>(native.ru_utime.tv_sec);
     result.ru_utime.tv_usec = static_cast<std::int64_t>(native.ru_utime.tv_usec);

@@ -40,6 +40,10 @@ extern "C" _invalid_parameter_handler _set_thread_local_invalid_parameter_handle
 #include <sys/uio.h>
 #include <unistd.h>
 #include <cstdio>
+#ifdef __APPLE__
+#include <cstdlib>
+#include <filesystem>
+#endif
 #endif
 
 namespace {
@@ -656,6 +660,17 @@ int CreateAnonymousFile() {
     }
     errno = EEXIST;
     return -1;
+#elif defined(__APPLE__)
+    auto path = (std::filesystem::temp_directory_path() / "anyps5-shm-XXXXXX").string();
+    const int descriptor = mkstemp(path.data());
+    if (descriptor < 0) return -1;
+    if (unlink(path.c_str()) != 0 || fcntl(descriptor, F_SETFD, FD_CLOEXEC) != 0) {
+        const int error = errno;
+        ::close(descriptor);
+        errno = error;
+        return -1;
+    }
+    return descriptor;
 #else
     const int descriptor = memfd_create("anyps5 shm_open", MFD_CLOEXEC);
     return descriptor;
