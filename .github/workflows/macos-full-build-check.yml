@@ -2,7 +2,7 @@ name: macOS full build check
 
 on:
   push:
-    branches: ['claude/macos-full-build-check']
+    branches: ['claude/macos-full-build-check', 'claude/macos-vulkan-loader']
   workflow_dispatch:
 
 permissions:
@@ -49,17 +49,33 @@ jobs:
       - name: Summarize errors
         if: always()
         run: |
+          annotate() {
+            local title="$1" body="$2"
+            [ -n "$body" ] || body="(none)"
+            body="${body//'%'/'%25'}"
+            body="${body//$'\n'/'%0A'}"
+            echo "::notice title=$title::$body"
+          }
           for log in build.log libs.log; do
             [ -f "$log" ] || continue
-            echo "== $log: failed targets"
-            grep -E '^FAILED: ' "$log" | sort -u | head -100 || true
-            echo "== $log: first distinct errors"
-            grep -E 'error:|Undefined symbols|ld: ' "$log" | sort -u | head -60 || true
+            annotate "$log failed targets ($(grep -cE '^FAILED: ' "$log" || true))" "$(grep -E '^FAILED: ' "$log" | sort -u | cut -c1-240 | head -60)"
+            annotate "$log errors" "$(grep -E 'error:|Undefined symbols|ld: |referenced from' "$log" | sed 's|'"$GITHUB_WORKSPACE"'/||g' | sort -u | cut -c1-300 | head -80)"
           done
+          annotate "prx count" "$(ls -1 build/core/libs/libs/*.prx 2>/dev/null | wc -l) $(ls build/core/libs/libs 2>/dev/null | head -80 | tr '\n' ' ')"
+          annotate "host" "$(uname -m) $(sysctl -n machdep.cpu.brand_string) $(sw_vers -productVersion)"
       - name: Run tests
         if: steps.build.outcome == 'success'
         continue-on-error: true
-        run: ctest --test-dir build --output-on-failure --timeout 120 2>&1 | tee ctest.log
+        run: |
+          ctest --test-dir build --output-on-failure --timeout 120 2>&1 | tee ctest.log
+      - name: Summarize tests
+        if: always()
+        run: |
+          [ -f ctest.log ] || exit 0
+          body="$(grep -E 'tests passed|tests failed|\(Failed\)|\(Timeout\)|\(SEGFAULT\)|\(Subprocess|Not Run' ctest.log | head -80)"
+          body="${body//'%'/'%25'}"
+          body="${body//$'\n'/'%0A'}"
+          echo "::notice title=ctest::$body"
       - uses: actions/upload-artifact@v7
         if: always()
         with:
