@@ -3905,6 +3905,10 @@ ImportProbe ProbeDmaBufImportWriteProtection(const Context& context) {
     static_cast<void>(context);
     probe.failure = "the Linux write watch";
     return probe;
+#elif !defined(__linux__)
+    static_cast<void>(context);
+    probe.failure = "dma-buf import support";
+    return probe;
 #else
     if (!context.dmaBufImport) {
         probe.failure = "dma-buf import support";
