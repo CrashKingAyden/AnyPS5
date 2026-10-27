@@ -1,5 +1,5 @@
-[1846/5789] Building CXX object core/libs/prx/libSceVideoOut/CMakeFiles/libSceVideoOut.dir/src/InputMapping.cpp.o
-[1847/5789] Linking CXX shared library core/libs/libs/unpatched/libSceVideodec2.prx
+[1859/5848] Building CXX object core/libs/prx/libSceVideoOut/CMakeFiles/libSceVideoOut.dir/src/KeyboardMouse.cpp.o
+[1860/5848] Linking CXX shared library core/libs/libs/unpatched/libSceVideodec2.prx
 ld: warning: no platform load command found in 'build/externals/ffmpeg-9ac4cfd195f1/lib/libavcodec.a[x86_64][221](aacpsdsp.o)', assuming: macOS
 ld: warning: no platform load command found in 'build/externals/ffmpeg-9ac4cfd195f1/lib/libavcodec.a[x86_64][223](blockdsp.o)', assuming: macOS
 ld: warning: no platform load command found in 'build/externals/ffmpeg-9ac4cfd195f1/lib/libavcodec.a[x86_64][225](bswapdsp.o)', assuming: macOS
@@ -64,15 +64,15 @@ ld: warning: no platform load command found in 'build/externals/ffmpeg-9ac4cfd19
 ld: warning: no platform load command found in 'build/externals/ffmpeg-9ac4cfd195f1/lib/libswresample.a[x86_64][11](audio_convert.o)', assuming: macOS
 ld: warning: no platform load command found in 'build/externals/ffmpeg-9ac4cfd195f1/lib/libswresample.a[x86_64][13](rematrix.o)', assuming: macOS
 ld: warning: no platform load command found in 'build/externals/ffmpeg-9ac4cfd195f1/lib/libswresample.a[x86_64][15](resample.o)', assuming: macOS
-[1848/5789] Building CXX object core/libs/prx/libSceVideoOut/CMakeFiles/libSceVideoOut.dir/__/libkernel/Time/TimedWait.cpp.o
-[1849/5789] Linking C static library core/libs/prx/libSceVorbisDec/libvorbisfile.a
-[1850/5789] Building CXX object core/libs/prx/libSceVideoOut/CMakeFiles/libSceVideoOut.dir/src/VideoOutDriver.cpp.o
-In file included from core/libs/prx/libSceVideoOut/src/VideoOutDriver.cpp:22:
+[1861/5848] Building CXX object core/libs/prx/libSceVideoOut/CMakeFiles/libSceVideoOut.dir/src/InputMapping.cpp.o
+[1862/5848] Building CXX object core/libs/prx/libSceVideoOut/CMakeFiles/libSceVideoOut.dir/src/VideoOutDriver.cpp.o
+In file included from core/libs/prx/libSceVideoOut/src/VideoOutDriver.cpp:23:
 core/libs/prx/libkernel/Equeue/Equeue.hpp:139:17: warning: 'EqueuePin_nid_postfix' has C-linkage specified, but returns user-defined type 'KernelEqueueRef' (aka 'shared_ptr<KernelEqueuePrivate>') which is incompatible with C [-Wreturn-type-c-linkage]
   139 | KernelEqueueRef EqueuePin_nid_postfix(KernelEqueue eq);
+      |                 ^
 --
-6 warnings generated.
-[2090/5789] Linking CXX shared library core/libs/libs/unpatched/libSceAjm.prx
+[2100/5848] Linking CXX shared library core/libs/libs/unpatched/libkernel_web.prx
+[2101/5848] Linking CXX shared library core/libs/libs/unpatched/libSceAjm.prx
 ld: warning: no platform load command found in 'build/externals/ffmpeg-9ac4cfd195f1/lib/libavcodec.a[x86_64][221](aacpsdsp.o)', assuming: macOS
 ld: warning: no platform load command found in 'build/externals/ffmpeg-9ac4cfd195f1/lib/libavcodec.a[x86_64][223](blockdsp.o)', assuming: macOS
 ld: warning: no platform load command found in 'build/externals/ffmpeg-9ac4cfd195f1/lib/libavcodec.a[x86_64][225](bswapdsp.o)', assuming: macOS
@@ -129,9 +129,10 @@ ld: warning: no platform load command found in 'build/externals/ffmpeg-9ac4cfd19
 ld: warning: no platform load command found in 'build/externals/ffmpeg-9ac4cfd195f1/lib/libswresample.a[x86_64][11](audio_convert.o)', assuming: macOS
 ld: warning: no platform load command found in 'build/externals/ffmpeg-9ac4cfd195f1/lib/libswresample.a[x86_64][13](rematrix.o)', assuming: macOS
 ld: warning: no platform load command found in 'build/externals/ffmpeg-9ac4cfd195f1/lib/libswresample.a[x86_64][15](resample.o)', assuming: macOS
-[2091/5789] Linking CXX shared library core/libs/libs/unpatched/libSceAmpr.prx
-[2092/5789] Linking CXX shared library core/libs/libs/unpatched/libSceAppContent.prx
-[2093/5789] Linking CXX shared library core/libs/libs/unpatched/libSceAjm.native.prx
+[2102/5848] Linking CXX shared library core/libs/libs/unpatched/libSceAmpr.prx
+[2103/5848] Linking CXX shared library core/libs/libs/unpatched/libSceAppContent.prx
+[2104/5848] Linking CXX executable tests/agc_driver_address_passes_tests
+[2105/5848] Linking CXX shared library core/libs/libs/unpatched/libSceAjm.native.prx
 ld: warning: no platform load command found in 'build/externals/ffmpeg-9ac4cfd195f1/lib/libavcodec.a[x86_64][221](aacpsdsp.o)', assuming: macOS
 ld: warning: no platform load command found in 'build/externals/ffmpeg-9ac4cfd195f1/lib/libavcodec.a[x86_64][223](blockdsp.o)', assuming: macOS
 ld: warning: no platform load command found in 'build/externals/ffmpeg-9ac4cfd195f1/lib/libavcodec.a[x86_64][225](bswapdsp.o)', assuming: macOS
@@ -188,11 +189,10 @@ ld: warning: no platform load command found in 'build/externals/ffmpeg-9ac4cfd19
 ld: warning: no platform load command found in 'build/externals/ffmpeg-9ac4cfd195f1/lib/libswresample.a[x86_64][11](audio_convert.o)', assuming: macOS
 ld: warning: no platform load command found in 'build/externals/ffmpeg-9ac4cfd195f1/lib/libswresample.a[x86_64][13](rematrix.o)', assuming: macOS
 ld: warning: no platform load command found in 'build/externals/ffmpeg-9ac4cfd195f1/lib/libswresample.a[x86_64][15](resample.o)', assuming: macOS
-[2094/5789] Building CXX object core/libs/prx/libSceZlib/CMakeFiles/libSceZlib.dir/Export.cpp.o
-[2095/5789] Linking CXX shared library core/libs/libs/unpatched/libSceAt9Enc.prx
-[2096/5789] Linking CXX shared library core/libs/libs/unpatched/libSceAudioPropagation.prx
-[2097/5789] Linking CXX shared library core/libs/libs/unpatched/libSceAudio3d.prx
-[2098/5789] Linking CXX shared library core/libs/libs/unpatched/libSceAudiodec.native.prx
+[2106/5848] Linking CXX shared library core/libs/libs/unpatched/libSceAt9Enc.prx
+[2107/5848] Linking CXX shared library core/libs/libs/unpatched/libSceAudio3d.prx
+[2108/5848] Linking CXX shared library core/libs/libs/unpatched/libSceAudioPropagation.prx
+[2109/5848] Linking CXX shared library core/libs/libs/unpatched/libSceAudiodec.native.prx
 ld: warning: no platform load command found in 'build/externals/ffmpeg-9ac4cfd195f1/lib/libavcodec.a[x86_64][221](aacpsdsp.o)', assuming: macOS
 ld: warning: no platform load command found in 'build/externals/ffmpeg-9ac4cfd195f1/lib/libavcodec.a[x86_64][223](blockdsp.o)', assuming: macOS
 ld: warning: no platform load command found in 'build/externals/ffmpeg-9ac4cfd195f1/lib/libavcodec.a[x86_64][225](bswapdsp.o)', assuming: macOS
@@ -249,8 +249,7 @@ ld: warning: no platform load command found in 'build/externals/ffmpeg-9ac4cfd19
 ld: warning: no platform load command found in 'build/externals/ffmpeg-9ac4cfd195f1/lib/libswresample.a[x86_64][11](audio_convert.o)', assuming: macOS
 ld: warning: no platform load command found in 'build/externals/ffmpeg-9ac4cfd195f1/lib/libswresample.a[x86_64][13](rematrix.o)', assuming: macOS
 ld: warning: no platform load command found in 'build/externals/ffmpeg-9ac4cfd195f1/lib/libswresample.a[x86_64][15](resample.o)', assuming: macOS
-[2099/5789] Linking CXX shared library core/libs/libs/unpatched/libSceAudioIn.prx
-[2100/5789] Linking CXX shared library core/libs/libs/unpatched/libSceAudiodec.prx
+[2110/5848] Linking CXX shared library core/libs/libs/unpatched/libSceAudiodec.prx
 ld: warning: no platform load command found in 'build/externals/ffmpeg-9ac4cfd195f1/lib/libavcodec.a[x86_64][221](aacpsdsp.o)', assuming: macOS
 ld: warning: no platform load command found in 'build/externals/ffmpeg-9ac4cfd195f1/lib/libavcodec.a[x86_64][223](blockdsp.o)', assuming: macOS
 ld: warning: no platform load command found in 'build/externals/ffmpeg-9ac4cfd195f1/lib/libavcodec.a[x86_64][225](bswapdsp.o)', assuming: macOS
@@ -307,7 +306,11 @@ ld: warning: no platform load command found in 'build/externals/ffmpeg-9ac4cfd19
 ld: warning: no platform load command found in 'build/externals/ffmpeg-9ac4cfd195f1/lib/libswresample.a[x86_64][11](audio_convert.o)', assuming: macOS
 ld: warning: no platform load command found in 'build/externals/ffmpeg-9ac4cfd195f1/lib/libswresample.a[x86_64][13](rematrix.o)', assuming: macOS
 ld: warning: no platform load command found in 'build/externals/ffmpeg-9ac4cfd195f1/lib/libswresample.a[x86_64][15](resample.o)', assuming: macOS
-[2101/5789] Linking CXX shared library core/libs/libs/unpatched/libSceAvPlayer.prx
+[2111/5848] Linking CXX shared library core/libs/libs/unpatched/libSceAudioIn.prx
+[2112/5848] Linking CXX shared library core/libs/libs/unpatched/libSceBluetoothHid.prx
+[2113/5848] Linking CXX shared library core/libs/libs/unpatched/libSceCamera.prx
+[2114/5848] Linking CXX shared library core/libs/libs/unpatched/libSceCdlgG2P.prx
+[2115/5848] Linking CXX shared library core/libs/libs/unpatched/libSceAvPlayer.prx
 ld: warning: no platform load command found in 'build/externals/ffmpeg-9ac4cfd195f1/lib/libavcodec.a[x86_64][221](aacpsdsp.o)', assuming: macOS
 ld: warning: no platform load command found in 'build/externals/ffmpeg-9ac4cfd195f1/lib/libavcodec.a[x86_64][223](blockdsp.o)', assuming: macOS
 ld: warning: no platform load command found in 'build/externals/ffmpeg-9ac4cfd195f1/lib/libavcodec.a[x86_64][225](bswapdsp.o)', assuming: macOS
@@ -372,7 +375,7 @@ ld: warning: no platform load command found in 'build/externals/ffmpeg-9ac4cfd19
 ld: warning: no platform load command found in 'build/externals/ffmpeg-9ac4cfd195f1/lib/libswresample.a[x86_64][11](audio_convert.o)', assuming: macOS
 ld: warning: no platform load command found in 'build/externals/ffmpeg-9ac4cfd195f1/lib/libswresample.a[x86_64][13](rematrix.o)', assuming: macOS
 ld: warning: no platform load command found in 'build/externals/ffmpeg-9ac4cfd195f1/lib/libswresample.a[x86_64][15](resample.o)', assuming: macOS
-[2102/5789] Linking CXX shared library core/libs/libs/unpatched/libSceAvPlayer.native.prx
+[2116/5848] Linking CXX shared library core/libs/libs/unpatched/libSceAvPlayer.native.prx
 ld: warning: no platform load command found in 'build/externals/ffmpeg-9ac4cfd195f1/lib/libavcodec.a[x86_64][221](aacpsdsp.o)', assuming: macOS
 ld: warning: no platform load command found in 'build/externals/ffmpeg-9ac4cfd195f1/lib/libavcodec.a[x86_64][223](blockdsp.o)', assuming: macOS
 ld: warning: no platform load command found in 'build/externals/ffmpeg-9ac4cfd195f1/lib/libavcodec.a[x86_64][225](bswapdsp.o)', assuming: macOS
@@ -437,19 +440,19 @@ ld: warning: no platform load command found in 'build/externals/ffmpeg-9ac4cfd19
 ld: warning: no platform load command found in 'build/externals/ffmpeg-9ac4cfd195f1/lib/libswresample.a[x86_64][11](audio_convert.o)', assuming: macOS
 ld: warning: no platform load command found in 'build/externals/ffmpeg-9ac4cfd195f1/lib/libswresample.a[x86_64][13](rematrix.o)', assuming: macOS
 ld: warning: no platform load command found in 'build/externals/ffmpeg-9ac4cfd195f1/lib/libswresample.a[x86_64][15](resample.o)', assuming: macOS
-[2103/5789] Linking CXX shared library core/libs/libs/unpatched/libSceBluetoothHid.prx
-[2104/5789] Linking CXX shared library core/libs/libs/unpatched/libSceCamera.prx
-[2105/5789] Linking CXX shared library core/libs/libs/unpatched/libSceCdlgPlayerReview.prx
-[2106/5789] Linking CXX shared library core/libs/libs/unpatched/libSceCdlgG2P.prx
-[2107/5789] Linking CXX shared library core/libs/libs/unpatched/libSceCesCs-module.prx
-[2108/5789] Linking CXX shared library core/libs/libs/unpatched/libSceCommonDialog.prx
+[2117/5848] Linking CXX shared library core/libs/libs/unpatched/libSceCesCs-module.prx
+[2118/5848] Linking CXX shared library core/libs/libs/unpatched/libSceCesCs.prx
+[2119/5848] Linking CXX shared library core/libs/libs/unpatched/libSceCdlgPlayerReview.prx
+[2120/5848] Linking CXX shared library core/libs/libs/unpatched/libSceContentExport.prx
+[2121/5848] Linking CXX shared library core/libs/libs/unpatched/libSceCompanionHttpd.prx
+[2122/5848] Linking CXX shared library core/libs/libs/unpatched/libSceContentSearch.prx
 --
-[5374/5789] Linking CXX executable tests/guest_json_copy_failure_tests
-[5375/5789] Linking CXX executable tests/guest_jxr_stream_tests
+[5430/5848] Linking CXX executable tests/guest_fstatvfs_conversion_tests
+[5431/5848] Linking CXX executable tests/guest_jxr_stream_tests
 ld: warning: reducing alignment of section __DATA,__bss from 0x2000 to 0x1000 because it exceeds segment maximum alignment
-[5376/5789] Linking CXX executable tests/guest_init_once_tests
-[5377/5789] Linking CXX executable tests/keyboard_tests
-[5378/5789] Linking CXX executable tests/guest_json_tests
-[5379/5789] Linking CXX executable tests/guest_jxr_lookup_tests
-[5380/5789] Linking CXX executable tests/guest_fstatvfs_conversion_tests
-[5381/5789] Linking CXX executable tests/guest_utime_tests
+[5432/5848] Linking CXX executable tests/keyboard_tests
+[5433/5848] Linking CXX executable tests/guest_statvfs_tests
+[5434/5848] Linking CXX executable tests/guest_init_once_tests
+[5435/5848] Linking CXX executable tests/guest_fstatvfs_tests
+[5436/5848] Linking CXX executable tests/guest_posix_spawn_tests
+[5437/5848] Linking CXX executable tests/guest_utime_tests

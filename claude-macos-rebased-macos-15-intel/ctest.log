@@ -1,109 +1,82 @@
-          Start  471: application_heap_scripting
- 471/2467 Test  #471: application_heap_scripting ................................................................................Subprocess aborted***Exception:   0.02 sec
-libc++abi: terminating due to uncaught exception of type std::runtime_error: application heap: unsupported executable format
-
-          Start  472: application_heap_lazy
- 472/2467 Test  #472: application_heap_lazy .....................................................................................Subprocess aborted***Exception:   0.02 sec
-libc++abi: terminating due to uncaught exception of type std::runtime_error: application heap: unsupported executable format
-
-          Start  473: guest_allocator_failures
- 473/2467 Test  #473: guest_allocator_failures ..................................................................................   Passed    0.02 sec
-          Start  474: application_heap_stats
- 474/2467 Test  #474: application_heap_stats ....................................................................................   Passed    0.02 sec
-          Start  475: application_heap_stats_default
---
-          Start 1150: agc_driver_registration_prepare_stack
-1150/2467 Test #1150: agc_driver_registration_prepare_stack .....................................................................Subprocess aborted***Exception:   0.05 sec
+          Start 1162: agc_driver_registration_prepare_stack
+1162/2499 Test #1162: agc_driver_registration_prepare_stack .....................................................................Subprocess aborted***Exception:   0.04 sec
 libc++abi: terminating due to uncaught exception of type std::__1::system_error: mutex lock failed: Invalid argument
 registration prepare stack tests passed
 
-          Start 1151: agc_driver_registration_trace
-1151/2467 Test #1151: agc_driver_registration_trace .............................................................................***Skipped   0.06 sec
-          Start 1152: agc_driver_relative_ancillary
-1152/2467 Test #1152: agc_driver_relative_ancillary .............................................................................***Skipped   0.06 sec
-          Start 1153: agc_driver_relative_indexing
+          Start 1163: agc_driver_registration_trace
+1163/2499 Test #1163: agc_driver_registration_trace .............................................................................***Skipped   0.03 sec
+          Start 1164: agc_driver_relative_ancillary
+1164/2499 Test #1164: agc_driver_relative_ancillary .............................................................................***Skipped   0.03 sec
+          Start 1165: agc_driver_relative_indexing
 --
-          Start 2087: guest_process_arguments
-2087/2467 Test #2087: guest_process_arguments ...................................................................................Subprocess aborted***Exception:   0.02 sec
+          Start 2117: guest_process_arguments
+2117/2499 Test #2117: guest_process_arguments ...................................................................................Subprocess aborted***Exception:   0.02 sec
 libc++abi: terminating due to uncaught exception of type std::runtime_error: Cannot read process arguments
 
-          Start 2088: nid_patcher_symbol_versions
-2088/2467 Test #2088: nid_patcher_symbol_versions ...............................................................................   Passed    0.16 sec
-          Start 2089: guest_dynamic_loader
-2089/2467 Test #2089: guest_dynamic_loader ......................................................................................Subprocess aborted***Exception:   0.03 sec
+          Start 2118: nid_patcher_symbol_versions
+2118/2499 Test #2118: nid_patcher_symbol_versions ...............................................................................   Passed    0.16 sec
+          Start 2119: guest_dynamic_loader
+2119/2499 Test #2119: guest_dynamic_loader ......................................................................................Subprocess aborted***Exception:   0.03 sec
 [module] dlopen: cannot load build/core/libs/prx/libkernel/anyps5-missing-module-for-test.prx (dlopen(build/core/libs/prx/libkernel/anyps5-missing-module-for-test.prx, 0x0006): tried: 'build/core/libs/prx/libkernel/anyps5-missing-module-for-test.prx' (no such file), '/System/Volumes/Preboot/Cryptexes/OSbuild/core/libs/prx/libkernel/anyps5-missing-module-for-test.prx' (no such file), 'build/core/libs/prx/libkernel/anyps5-missing-module-for-test.prx' (no such file))
 --
-2217/2467 Test #2217: guest_kernel_app_archive_mmap .............................................................................Subprocess aborted***Exception:   0.03 sec
+2247/2499 Test #2247: guest_kernel_app_archive_mmap .............................................................................Subprocess aborted***Exception:   0.03 sec
 [src/Open.cpp:303 sceKernelOpen] path=/app0/Data/Small.txt flags=0x0 nativeFlags=0x0 mode=00
 libc++abi: terminating due to uncaught exception of type std::runtime_error: mmap on a file read from app0.zar, fd=4 not implemented
 
-          Start 2218: guest_socket_on_non_socket
-2218/2467 Test #2218: guest_socket_on_non_socket ................................................................................   Passed    0.02 sec
-          Start 2219: guest_dup
-2219/2467 Test #2219: guest_dup .................................................................................................   Passed    0.03 sec
-          Start 2220: guest_kqueue
+          Start 2248: guest_socket_on_non_socket
+2248/2499 Test #2248: guest_socket_on_non_socket ................................................................................   Passed    0.02 sec
+          Start 2249: guest_dup
+2249/2499 Test #2249: guest_dup .................................................................................................   Passed    0.03 sec
+          Start 2250: guest_kqueue
 --
-2467/2467 Test #2467: macos_guest_weak_imports ..................................................................................   Passed    0.89 sec
+2499/2499 Test #2499: macos_guest_weak_imports ..................................................................................   Passed    1.28 sec
 
-97% tests passed, 84 tests failed out of 2467
+98% tests passed, 55 tests failed out of 2499
 
 Label Time Summary:
-relinker                 =   2.04 sec*proc (3 tests)
-tls_function_coverage    =  13.17 sec*proc (34 tests)
+relinker                 =   3.78 sec*proc (4 tests)
+tls_function_coverage    =  10.79 sec*proc (34 tests)
 
-Total Test time (real) = 1300.74 sec
+Total Test time (real) = 1334.31 sec
 --
-	293 - guest_pthread_create_suspended (Subprocess aborted)
-	305 - guest_usb_storage_dialog (Subprocess aborted)
-	346 - guest_update_env (Failed)
-	397 - guest_math (Subprocess aborted)
-	417 - guest_path_case (Subprocess aborted)
-	422 - guest_dinkumware_internals (Failed)
-	447 - guest_future_category (Subprocess aborted)
-	471 - application_heap_scripting (Subprocess aborted)
-	472 - application_heap_lazy (Subprocess aborted)
-	540 - agc_write_tracking (Failed)
-	543 - agc_thread_priority_refused_rt (Failed)
-	544 - agc_thread_priority_refused_high (Failed)
-	659 - agc_performance_overlay_statistics (Failed)
-	676 - agc_submit_progress (Failed)
-	677 - agc_submit_progress_no_timeline (Failed)
-	711 - agc_shader_table_snapshot_reuse (Failed)
-	712 - agc_shader_table_snapshot_reuse_unmasked (Failed)
-	727 - agc_shared_write (Failed)
-	753 - agc_driver_graphics (Failed)
-	1105 - agc_driver_pipelined_metadata_pass (Failed)
-	1150 - agc_driver_registration_prepare_stack (Subprocess aborted)
-	1316 - agc_driver_pipelined_metadata_pass_draw_pipeline (Failed)
-	1356 - agc_heap_mirror_unwatch (Failed)
-	1357 - agc_heap_mirror_unwatch_no_space_cache (Failed)
-	1360 - agc_sparse_heap_mirror_budget (Failed)
-	1363 - agc_heap_mirror_unwatched_import (Failed)
-	1442 - agc_descriptor_pool_reset_failure (Subprocess aborted)
-	1447 - agc_driver_pm4_priority_refused (Failed)
-	1571 - guest_appcontent (Subprocess aborted)
-	1624 - guest_avplayer (Failed)
-	1653 - guest_convert_keycode (Subprocess aborted)
-	1654 - guest_convert_keycode_title_oversized-id (Failed)
-	1655 - guest_convert_keycode_title_oversized-title (Failed)
-	1656 - guest_convert_keycode_title_cusa (Failed)
-	1657 - guest_convert_keycode_title_ppsa (Failed)
-	1658 - guest_convert_keycode_title_malformed-json (Failed)
-	1659 - guest_convert_keycode_title_missing (Failed)
-	1672 - font_face_lifetime (Timeout)
-	1673 - font_face_lifetime_replace (Timeout)
-	1674 - font_face_lifetime_churn (Timeout)
-	1706 - guest_hmd (Subprocess aborted)
-	1707 - guest_hmd2 (Subprocess aborted)
-	1710 - guest_http (Subprocess aborted)
+	402 - guest_math (Subprocess aborted)
+	422 - guest_path_case (Subprocess aborted)
+	427 - guest_dinkumware_internals (Failed)
+	453 - guest_future_category (Subprocess aborted)
+	549 - agc_write_tracking (Failed)
+	552 - agc_thread_priority_refused_rt (Failed)
+	553 - agc_thread_priority_refused_high (Failed)
+	669 - agc_performance_overlay_statistics (Failed)
+	687 - agc_submit_progress (Failed)
+	688 - agc_submit_progress_no_timeline (Failed)
+	722 - agc_shader_table_snapshot_reuse (Failed)
+	723 - agc_shader_table_snapshot_reuse_unmasked (Failed)
+	738 - agc_shared_write (Failed)
+	764 - agc_driver_graphics (Failed)
+	1117 - agc_driver_pipelined_metadata_pass (Failed)
+	1162 - agc_driver_registration_prepare_stack (Subprocess aborted)
+	1328 - agc_driver_pipelined_metadata_pass_draw_pipeline (Failed)
+	1368 - agc_heap_mirror_unwatch (Failed)
+	1369 - agc_heap_mirror_unwatch_no_space_cache (Failed)
+	1372 - agc_sparse_heap_mirror_budget (Failed)
+	1375 - agc_heap_mirror_unwatched_import (Failed)
+	1454 - agc_descriptor_pool_reset_failure (Subprocess aborted)
+	1459 - agc_driver_pm4_priority_refused (Failed)
+	1637 - guest_avplayer (Failed)
+	1685 - font_face_lifetime (Timeout)
+	1686 - font_face_lifetime_replace (Timeout)
+	1687 - font_face_lifetime_churn (Timeout)
+	1796 - guest_fdopendir (Subprocess aborted)
+	1799 - guest_posix_spawn (Subprocess aborted)
+	1805 - guest_force_tls_destructor (Subprocess aborted)
 --
-	2196 - guest_system_configuration (Subprocess aborted)
-	2208 - guest_poll (Subprocess aborted)
-	2212 - guest_socket_port_zero (Failed)
-	2216 - guest_kernel_app_archive_plain (Failed)
-	2217 - guest_kernel_app_archive_mmap (Subprocess aborted)
-	2220 - guest_kqueue (Subprocess aborted)
-	2227 - guest_credentials (Subprocess aborted)
-	2229 - guest_memory (Subprocess aborted)
-	2240 - guest_mlock (Subprocess aborted)
-	2242 - guest_directory_entries (Subprocess aborted)
+	2226 - guest_system_configuration (Subprocess aborted)
+	2238 - guest_poll (Subprocess aborted)
+	2242 - guest_socket_port_zero (Failed)
+	2246 - guest_kernel_app_archive_plain (Failed)
+	2247 - guest_kernel_app_archive_mmap (Subprocess aborted)
+	2257 - guest_credentials (Subprocess aborted)
+	2259 - guest_memory (Subprocess aborted)
+	2270 - guest_mlock (Subprocess aborted)
+	2272 - guest_directory_entries (Subprocess aborted)
+	2274 - guest_file_vector (Subprocess aborted)
